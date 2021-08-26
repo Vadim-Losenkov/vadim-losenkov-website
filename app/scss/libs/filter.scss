@@ -1,0 +1,11 @@
+.l-filter--hidden {
+  transform: scale(0) translate(0px, 500px);
+  opacity: 0;
+  transition: all .3s;
+}
+
+.l-filter--visible {
+  // transform: scale(.9) translate(50px);
+  opacity: 1;
+  transition: all .3s;
+}

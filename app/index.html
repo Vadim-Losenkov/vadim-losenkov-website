@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta https-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Вадим Лосенков</title>
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <header class="header">
+        <div class="container">
+          <div class="header__inner">
+            <h1 class="header__fish">
+              Vadim Losenkov
+            </h1>
+            <div class="header__btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="mobile-menu">
+        <ul class="mobile-menu__list">
+          <h6 class="mobile-menu__title">
+            Навигация по сайту
+          </h6>
+          <a href="scrollTop" class="mobile-menu__item" data-filter=".about" data-target="about" >Обо мне</a>
+          <a href="scrollTop" class="mobile-menu__item" data-filter=".portfolio" data-target="portfolio" >Портфолио</a>
+          <a href="scrollTop" class="mobile-menu__item" data-filter=".social" data-target="social" >Соц. Сети</a>
+          <a href="scrollTop" class="mobile-menu__item" data-filter=".reviews" data-target="reviews" >Отзывы</a>
+          <div class="mobile-menu__footer">
+            <span>
+              Версия сайта: v1.4.3
+            </span>
+          </div>
+        </ul>
+      </div>
+      <main class="main">
+        <div class="box">
+          <section class="about filter-page" data-groups='["about"]'>
+            <div class="about__title title">
+              Обо мне
+            </div>
+            <div class="about__text">
+              <p class="about__text-paragraph">
+                На моем сайте фрилансера веб-разработчика в портфолио представлены проекты, которые я разработал в течение последнего времени как в сотрудничестве с веб-студиями так и для частных клиентов, а также несколько личных проектов. Большинство из этих сайтов были разработаны с использованием CMS WordPress. Основная масса проектов содержит индивидуальные функции предназначенные для реализации особенностей работы веб-сайта.
+              </p>
+              <p class="about__text-paragraph">
+                Помимо созданных сайтов в портфолио, мной также разработаны различные калькуляторы, многоуровневое меню, слайдера изображений, отзывов и тд., множество обновлений веб-сайта, исправлений различных ошибок на сайтах, оптимизация загрузки сайта, наполнение сайта материалом (текстовой информацией) и многое другое...
+              </p>
+              <p class="about__text-paragraph">
+                В моем портфолио веб-разработчика указано название сайта, ссылка на сайт, цель сайта и описание выполненной работы. Если потребуется могу предоставить доказательства на то что это я делал все сайты с моего портфолио (код из github репозитория и др.)
+              </p>
+            </div>
+          </section>
+          <section class="portfolio filter-page" data-groups='["portfolio"]'>
+            <div class="portfolio__title title">
+              Мое Портфолио
+            </div>
+            <div class="portfolio__filter">
+              <div class="portfolio__filter-inner">
+                <div class="portfolio__filter-itemwrapper" data-target="all">
+                  <span class="open" data-target="all" >Все</span>
+                </div>
+                <div class="portfolio__filter-itemwrapper" data-target="mp">
+                  <span data-target="mp" >Много-страничники</span>
+                </div>
+                <div class="portfolio__filter-itemwrapper" data-target="land">
+                  <span data-target="land" >landing'и</span>
+                </div>
+                <div class="portfolio__filter-itemwrapper" data-target="ecom">
+                  <span data-target="ecom" >интернет-магазины</span>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio__inner" data-portfolio="wrapper"></div>
+          </section>
+          <section class="social mix filter-page" data-groups='["social"]'>
+            <div class="social__title title">
+              Связаться со мной
+            </div>
+            <div class="social__inner">
+              <div class="social__card">
+                <div class="social__card-title">
+                  Telegram
+                </div>
+                <div class="social__card-box">
+                  <div class="social__card-image tg">
+                    <span></span>
+                  </div>
+                  <div class="social__card-user">
+                    <div class="social__card-name">
+                      <span>name: </span>Vadim Losenkov
+                    </div>
+                    <div class="social__card-name">
+                      <span>nickname: </span>losenkov_vadim
+                    </div>
+                  </div>
+                </div>
+                <div class="social__card-button">
+                  <a href="https://t.me/losenkov_vadim" class="social__card-btn">
+                    Написать в <img src="images/icons/tg.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="social__card">
+                <div class="social__card-title">
+                  Instagram
+                </div>
+                <div class="social__card-box">
+                  <div class="social__card-image inst">
+                    <span></span>
+                  </div>
+                  <div class="social__card-user">
+                    <div class="social__card-name">
+                      <span>name: </span>Vadim Losenkov
+                    </div>
+                    <div class="social__card-name">
+                      <span>nickname: </span>losenkov.dev
+                    </div>
+                  </div>
+                </div>
+                <div class="social__card-button">
+                  <a href="https://instagram.com/losenkov.dev" class="social__card-btn">
+                    Написать в <img src="images/icons/inst.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="social__card">
+                <div class="social__card-title">
+                  VK
+                </div>
+                <div class="social__card-box">
+                  <div class="social__card-image vk">
+                    <span></span>
+                  </div>
+                  <div class="social__card-user">
+                    <div class="social__card-name">
+                      <span>name: </span>Vadim Losenkov
+                    </div>
+                    <div class="social__card-name">
+                      <span>nickname: </span>losenkov_dev
+                    </div>
+                  </div>
+                </div>
+                <div class="social__card-button">
+                  <a href="https://vk.com/losenkov_vadim" class="social__card-btn">
+                    Написать в <img src="images/icons/vk.svg" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="reviews filter-page" data-groups='["reviews"]'>
+            <div class="reviews__title title">
+              Отзывы
+            </div>
+            <div class="reviews__warning">
+              <div class="reviews__item-title">
+                Внимание!
+              </div>
+              <div class="reviews__warning-inner">
+                Все отзывы настоящие, написаны настоящими людьми и взяты из моего личного профиля на фриланс бирже <a target="_blank" href="https://www.weblancer.net/users/vadim_losenkov/reviews/?account_type=freelancer">weblancer.net</a>
+              </div>
+            </div>
+            <div class="reviews__inner" id="reviews"></div>
+          </section>
+        </div>
+        <aside class="aside">
+          <nav class="nav">
+            <h6 class="nav__title">
+              Навигация по сайту
+            </h6>
+            <ul class="nav-list">
+              <li class="nav-item">
+                <span class="nav-link"  data-target="about">
+                  Обо мне
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link"  data-target="portfolio">
+                  Портфолио
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link"  data-target="social">
+                  Соц. сети
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link"  data-target="reviews">
+                  Отзывы
+                </span>
+              </li>
+            </ul>
+            <div class="nav__footer">
+              <span>Версия сайта: v1.4.3</span>
+            </div>
+          </nav>
+        </aside>
+      </main>
+    </div>
+  </div>
+
+  <div class="modals-list" data-modal="wrapper"></div>
+  <a href="#" class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+  </a>
+
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/popup.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
