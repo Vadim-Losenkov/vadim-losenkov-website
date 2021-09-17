@@ -191,7 +191,14 @@ const posts = [
       'SCSS',
       'JavaScript',
       'Gulp 5'
-    ]
+    ],
+    modal: {
+      text: '<b>Выбирите:</b><br>перейти на главную / открыть карту сайта',
+      buttons: [
+        {name: 'главная', url: 'https://vadim-losenkov.ru/book-house/main.html'},
+        {name: 'карта', url: 'https://vadim-losenkov.ru/book-house/index.html'}
+      ]
+    },
   },
   {
     title: 'design-repair',
@@ -296,6 +303,30 @@ const posts = [
   },
 ]
 const reviews = [
+  {
+    name: 'Данила Катышев',
+    price: [5, 1420, 3659],
+    title: 'Сделать горизонтальный аккардион для сайта на jQuery.',
+    description: 'Хороший специалист. Сделал быстро и качественно. Рекомендую.',
+    date: '15.09.2021 в 16:28',
+    link: 'https://www.weblancer.net/projects/veb-programmirovanie-31/sdelat-gorizontalynyj-akkardion-dlya-sajta-na-jquery-1128976/'
+  },
+  {
+    name: 'Александр Сазанов',
+    price: [30, 1420, 3659],
+    title: 'Адаптивная верстка',
+    description: 'Сделал все оперативно, недочетов в работе не нашел. Хороший исполнитель',
+    date: '04.09.2021 в 14:27',
+    link: 'https://www.weblancer.net/projects/html-verstka-32/adaptivnaya-verstka-1127051/'
+  },
+  {
+    name: 'Герасим Дяченко',
+    price: [35, 1420, 3659],
+    title: 'Верстка сайта',
+    description: 'Все сделано быстро, качественно. Анимации сделаны как и договаривались. Всем советую этого верстальщика',
+    date: '03.09.2021 в 08:46',
+    link: 'https://www.weblancer.net/projects/html-verstka-32/verstka-sajta-1126786/'
+  },
   {
     name: 'Игорь Бильченко',
     price: [12, 1420, 3659],
@@ -414,6 +445,7 @@ class Poster {
   constructor(selectors = {}) {
     this.$main = document.querySelector(selectors.portfolio)
     this.$modals = document.querySelector(selectors.modals)
+    
     this.render()
   }
 
@@ -430,18 +462,18 @@ class Poster {
             >
               ${post.link}
             </a>
-            <div class="portfolio__project-image">
-              <div class="portfolio__project-images" data-tabson="items">
-            
-                <a href="#${post.title}" data-effect="mfp-zoom-in" data-post="${index}" data-popup="desc" class="portfolio__project-img open popup"
+            <div class="portfolio__project-image swiper-container mySwiper">
+              <div class="portfolio__project-images swiper-wrapper" data-tabson="items">
+                <a href="#${post.title}" data-effect="mfp-zoom-in" data-post="${index}" data-popup="desc" class="portfolio__project-img swiper-slide open popup"
                   data-item="1">
-                  <img data-lazy="${post.srcDesc}" />
+                  <img src="${post.srcDesc}" />
                 </a>
-                <a href="#${post.title}-mobile" data-effect="mfp-zoom-in" data-post="${index}" data-popup="mobile" class="portfolio__project-img popup"
+                <a href="#${post.title}-mobile" data-effect="mfp-zoom-in" data-post="${index}" data-popup="mobile" class="portfolio__project-img swiper-slide popup"
                   data-item="2">
-                  <img data-lazy="${post.srcMobile}" />
+                  <img src="${post.srcMobile}" />
                 </a>
               </div>
+              <div class="portfolio__project-pagination"></div>
             </div>
             <a 
               href="${post.modal ? `#${post.title}-router` : post.link}" 
@@ -589,16 +621,17 @@ class Filter {
       const act = $el.querySelector(`[data-target=${this.settings.filter.activeElements}]`)
           .classList.add(this.settings.filter.activeItemClass)
           
+      const $targetList = $el.querySelectorAll('[data-target]')
       $el.addEventListener('click', () => {
-      $el.querySelectorAll('[data-target]').forEach($filterEl => $filterEl.classList.remove(this.settings.filter.activeItemClass))
-      const $btn = event.target.closest('[data-target]')
-      
-      if ($btn) {
-        $btn.classList.add(this.settings.filter.activeItemClass)
-        const type = $btn.dataset.target
-        this.filterItems(type)
-      }
-    })
+        const $btn = event.target.closest('[data-target]')
+
+        if ($btn) {
+          $targetList.forEach($filterEl => $filterEl.classList.remove(this.settings.filter.activeItemClass))
+          $btn.classList.add(this.settings.filter.activeItemClass)
+          const type = $btn.dataset.target
+          this.filterItems(type)
+        }
+      })
     })
   }
   
@@ -682,6 +715,21 @@ new Filter('.box', {
   transitionSpeed: 300,
 })
 
+new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: '.portfolio__project-pagination',
+    clickable: true,
+    renderBullet: function (index, className) {
+      return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
+    },
+  },
+})
+
 $(function () {
   $('.popup').magnificPopup({
     type: 'inline',
@@ -719,17 +767,6 @@ $(function () {
 			$('.progress-wrap').removeClass('active-progress');
 		}
 	})
-	
-	$('.portfolio__project-images').slick({
-	  lazyLoad: 'ondemand',
-	  arrows: false,
-	  autoplay: true,
-	  autoplaySpeed: 3000,
-	  dots: true
-	})
-	
-	$('.portfolio .slick-dots li:first-child').html('<span data-id="1">на ПК</span>')
-	$('.portfolio .slick-dots li:nth-child(2)').html('<span data-id="2">на телефоне</span>')
 	
   $('.portfolio__project-description__title').on('click', function () {
     const $description = $(this).siblings('.portfolio__project-wrapper')
