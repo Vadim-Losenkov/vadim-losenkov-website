@@ -1,3 +1,4 @@
+/* 
 const posts = [
   {
     title: 'borowan',
@@ -440,7 +441,11 @@ const reviews = [
     link: 'https://www.weblancer.net/projects/html-verstka-32/adaptirovat-verstku-1106719/'
   },
 ]
+*/
 
+let posts
+let reviews
+ 
 class Poster {
   constructor(selectors = {}) {
     this.$main = document.querySelector(selectors.portfolio)
@@ -681,54 +686,60 @@ class Filter {
   }
 }
 
-new Poster({
-  portfolio: '[data-portfolio="wrapper"]',
-  modals: '[data-modal="wrapper"]',
+axios.get('https://61ac9c7ed228a9001703ab64.mockapi.io/posts').then((resp) => {
+  posts = resp.data
+  new Poster({
+    portfolio: '[data-portfolio="wrapper"]',
+    modals: '[data-modal="wrapper"]',
+  })
+  axios.get('https://61ac9c7ed228a9001703ab64.mockapi.io/reviews').then((resp) => {
+    reviews = resp.data
+    new Reviews('#reviews')
+    
+    new Filter('.main', {
+      items: {
+        wrapper: '.box',
+        item: '.filter-page'
+      },
+      filter: {
+        selectors: [$1, $2],
+        activeItemClass: 'open',
+        activeElements: 'portfolio'
+      },
+      transitionSpeed: 300,
+    })
+    new Filter('.box', {
+      items: {
+        wrapper: '.portfolio__inner',
+        item: '.project-card'
+      },
+      filter: {
+        selectors: ['.portfolio__filter-inner'],
+        activeItemClass: 'open',
+        activeElements: 'all'
+      },
+      transitionSpeed: 300,
+    })
+    
+    new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.portfolio__project-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
+        },
+      },
+    })
+  })
 })
-new Reviews('#reviews')
 
 const $1 = document.querySelector('.mobile-menu__list')
 const $2 = document.querySelector('.nav-list')
-
-new Filter('.main', {
-  items: {
-    wrapper: '.box',
-    item: '.filter-page'
-  },
-  filter: {
-    selectors: [$1, $2],
-    activeItemClass: 'open',
-    activeElements: 'portfolio'
-  },
-  transitionSpeed: 300,
-})
-new Filter('.box', {
-  items: {
-    wrapper: '.portfolio__inner',
-    item: '.project-card'
-  },
-  filter: {
-    selectors: ['.portfolio__filter-inner'],
-    activeItemClass: 'open',
-    activeElements: 'all'
-  },
-  transitionSpeed: 300,
-})
-
-new Swiper(".mySwiper", {
-  spaceBetween: 30,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: '.portfolio__project-pagination',
-    clickable: true,
-    renderBullet: function (index, className) {
-      return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
-    },
-  },
-})
 
 $(function () {
   $('.popup').magnificPopup({
