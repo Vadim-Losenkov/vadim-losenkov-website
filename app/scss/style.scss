@@ -787,6 +787,7 @@
     display: block;
     padding-left: 60px;
     position: relative;
+    cursor: pointer;
     &::before {
       content: "";
       position: absolute;
