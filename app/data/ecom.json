@@ -1,0 +1,63 @@
+[
+  {
+   "id": "1",
+   "title": "Rabit",
+   "link": "https://vadim-losenkov.ru/rabit",
+   "time": "3 недели 4 дня",
+   "description": "Большой 13-ти страничный сайт компани специализирующейся на починке техники. страниц у сайта не соеденены между собой, поэтому предоставлена карта сайта",
+   "srcDesc": "images/content/rabit.jpg",
+   "srcMobile": "images/content/rabit-mob.jpg",
+   "groups": "\"all\", \"ecom\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/rabit/main.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/rabit/index.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "2",
+   "title": "book-house",
+   "link": "https://vadim-losenkov.ru/book-house",
+   "time": "7 недель 2 дня",
+   "description": "Большой интернет магазин, на котором используется множество различных технологий, состоящий из 25 страниц. Каждая страница адаптивна (хорошо выглядит как на ПК так и на телефоне).",
+   "srcDesc": "images/content/project-book.jpg",
+   "srcMobile": "images/content/project-book-mobile.jpg",
+   "groups": "\"all\", \"ecom\", \"mp\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "Gulp 5"
+   ],
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/book-house/main.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/book-house/index.html"
+     }
+    ]
+   }
+  }
+ ]

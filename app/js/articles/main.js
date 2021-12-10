@@ -1,6 +1,6 @@
 const POSTS_HASH = '61ac9c7ed228a9001703ab64'
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
-const $MODALS_WRAPPER = document.querySelector('[data-modals="wrapper"]')
+const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
 
 let posts
 let reviews
@@ -12,14 +12,28 @@ function filter(wrapper) {
   const $items = $wrapper.querySelectorAll('[data-target]')
 
   $wrapper.addEventListener('click', (event) => {
-    $PORTFOLIO_WRAPPER.innerHTML = ''
-    
     const $target = event.target.closest('[data-target]')
-    if ($target) {
+    if ($target && !$target.querySelector('span').classList.contains('open')) {
+      $PORTFOLIO_WRAPPER.innerHTML = `
+        <div class="portfolio__card--loading">
+          <div class="portfolio__card-link--loading"></div>
+          <div class="portfolio__card-image--loading"></div>
+          <div class="portfolio__card-filter--loading"></div>
+          <div class="portfolio__card-button--loading"></div>
+          <div class="portfolio__card-descripton--loading"></div>
+        </div>
+        <div class="portfolio__card--loading">
+          <div class="portfolio__card-link--loading"></div>
+          <div class="portfolio__card-image--loading"></div>
+          <div class="portfolio__card-filter--loading"></div>
+          <div class="portfolio__card-button--loading"></div>
+          <div class="portfolio__card-descripton--loading"></div>
+        </div>
+      `
       $items.forEach($el => {
-        $el.classList.remove('open')
+        $el.querySelector('span').classList.remove('open')
       })
-      $target.classList.add('open')
+      $target.querySelector('span').classList.add('open')
 
       const $item = $target.dataset.target
       getPosts($item)
@@ -29,11 +43,11 @@ function filter(wrapper) {
 
 class Poster {
   constructor(selectors = {}) {
-    this.$main = selectors.portfolio instanceof HTMLElement 
+    this.$main = selectors.portfolio instanceof HTMLElement
       ? selectors.portfolio
       : document.querySelector(selectors.portfolio)
-    this.$modals = selectors.modals instanceof HTMLElement 
-      ? selectors.modals 
+    this.$modals = selectors.modals instanceof HTMLElement
+      ? selectors.modals
       : document.querySelector(selectors.modals)
     this.render()
   }
@@ -111,7 +125,7 @@ class Poster {
           ${button.name}
         </a>
       `).join('')
-      
+
       const routerModalTemplate = (text, buttonsList) => `
         <div id="${modal.title}-router" class="website-router white-popup mfp-with-anim mfp-hide">
           <h2 class="website-router__title">Vadim losenkov</h2>
@@ -144,14 +158,15 @@ class Poster {
 }
 
 function getPosts(item = 'all') {
-  axios.get(`https://${POSTS_HASH}.mockapi.io/${item}`).then((resp) => {
+  // axios.get(`https://${POSTS_HASH}.mockapi.io/${item}`).then((resp) => {
+  axios.get(`../app/data/${item}.json`).then((resp) => {
     posts = resp.data
-  
+
     new Poster({
       portfolio: $PORTFOLIO_WRAPPER,
       modals: $MODALS_WRAPPER,
     })
-  
+
     new Swiper(".card-slider", {
       spaceBetween: 30,
       autoplay: {
@@ -166,8 +181,7 @@ function getPosts(item = 'all') {
         },
       },
     })
-
-  }) 
+  })
 }
 
 filter('.portfolio__filter-inner')
@@ -184,42 +198,42 @@ $(function () {
     },
     midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
   });
-  
-  
-	let progressPath = document.querySelector('.progress-wrap path');
-	let pathLength = progressPath.getTotalLength();
-	progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
-	progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-	progressPath.style.strokeDashoffset = pathLength;
-	progressPath.getBoundingClientRect();
-	progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';		
-	let updateProgress = function () {
-		let scroll = $(window).scrollTop();
-		let height = $(document).height() - $(window).height();
-		let progress = pathLength - (scroll * pathLength / height);
-		progressPath.style.strokeDashoffset = progress;
-	}
-	updateProgress();
-	$(window).scroll(updateProgress);	
-	let offset = 50;
-	let duration = 550;
-	$(window).on('scroll', function() {
-		if ($(this).scrollTop() > offset) {
-			$('.progress-wrap').addClass('active-progress');
-		} else {
-			$('.progress-wrap').removeClass('active-progress');
-		}
-	})
-	
+
+
+  let progressPath = document.querySelector('.progress-wrap path');
+  let pathLength = progressPath.getTotalLength();
+  progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+  progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+  progressPath.style.strokeDashoffset = pathLength;
+  progressPath.getBoundingClientRect();
+  progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+  let updateProgress = function () {
+    let scroll = $(window).scrollTop();
+    let height = $(document).height() - $(window).height();
+    let progress = pathLength - (scroll * pathLength / height);
+    progressPath.style.strokeDashoffset = progress;
+  }
+  updateProgress();
+  $(window).scroll(updateProgress);
+  let offset = 50;
+  let duration = 550;
+  $(window).on('scroll', function () {
+    if ($(this).scrollTop() > offset) {
+      $('.progress-wrap').addClass('active-progress');
+    } else {
+      $('.progress-wrap').removeClass('active-progress');
+    }
+  })
+
   $('.portfolio__project-description__title').on('click', function () {
     const $description = $(this).siblings('.portfolio__project-wrapper')
     $(this).toggleClass('open')
     $description.slideToggle()
   })
-  $('[href="scrollTop"]').click(function(event) {
+  $('[href="scrollTop"]').click(function (event) {
     event.preventDefault()
-    setTimeout(() => $('html, body').animate({scrollTop: 0},500), 0);
-	})
+    setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
+  })
   const $menu = $('.mobile-menu')
   const $btn = $('.header__btn')
   $btn.on('click', () => {

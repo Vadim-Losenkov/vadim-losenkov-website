@@ -1,0 +1,361 @@
+[
+  {
+   "id": "1",
+   "title": "english",
+   "link": "https://vadim-losenkov.ru/english",
+   "time": "2 недели 1 день",
+   "description": "Сайт для репетитора по английскому языку. Разработка велась на SCSS + JS, без использования JQuery",
+   "srcDesc": "images/content/english.jpg",
+   "srcMobile": "images/content/english-mob.jpg",
+   "groups": "\"all\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/english/index.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/english/map.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "2",
+   "title": "borowan",
+   "link": "https://vadim-losenkov.ru/borowan",
+   "time": "1 неделя 5 деней",
+   "description": "Корпоративный сайт немецкой правовой компании. При разработке использовался Bootstrap 4 и JQuery",
+   "srcDesc": "images/content/borowan.jpg",
+   "srcMobile": "images/content/borowan-mob.jpg",
+   "groups": "\"all\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/borowan/index.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/borowan/map.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "CSS",
+    "JavaScript",
+    "JQuery",
+    "Bootstrap 4",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "3",
+   "title": "SEO",
+   "link": "https://vadim-losenkov.ru/seo",
+   "time": "1 неделя 1 день",
+   "description": "Cайт продажник компании по продвижению бизнес проектов. Разработка велась на SCSS + JS. JQuery не используется",
+   "srcDesc": "images/content/seo.jpg",
+   "srcMobile": "images/content/seo-mob.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "4",
+   "title": "Rabit",
+   "link": "https://vadim-losenkov.ru/rabit",
+   "time": "3 недели 4 дня",
+   "description": "Большой 13-ти страничный сайт компани специализирующейся на починке техники. страниц у сайта не соеденены между собой, поэтому предоставлена карта сайта",
+   "srcDesc": "images/content/rabit.jpg",
+   "srcMobile": "images/content/rabit-mob.jpg",
+   "groups": "\"all\", \"ecom\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/rabit/main.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/rabit/index.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "4",
+   "title": "Crypto",
+   "link": "https://vadim-losenkov.ru/crypto/lang-ru.html",
+   "time": "5 дней",
+   "description": "Небольшой сайт продажник инвестиций в криптовалюты. Сайт был разработан всего за 5 дней. При адаптировании сайта все элементы сайта сохранены.",
+   "srcDesc": "images/content/crypto.jpg",
+   "srcMobile": "images/content/crypto-mob.jpg",
+   "groups": "\"all\", \"land\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>русскоязычная версия сайта / англоязычная версия сайта",
+    "buttons": [
+     {
+      "name": "RU",
+      "url": "https://vadim-losenkov.ru/crypto/lang-ru.html"
+     },
+     {
+      "name": "ENG",
+      "url": "https://vadim-losenkov.ru/crypto/lang-en.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "5",
+   "title": "Karavan",
+   "link": "https://vadim-losenkov.ru/karavan",
+   "time": "2 недели 2 дня",
+   "description": "Сайт выполнен для сети магазинов karavan. Состоит из 5 странтц, каждая страница адаптирована, сам сайт оптимизирован на оценку 90+ на сайте Google Page Speed.",
+   "srcDesc": "images/content/karavan.jpg",
+   "srcMobile": "images/content/karavan-mob.jpg",
+   "groups": "\"all\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/karavan/"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/karavan/map.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "6",
+   "title": "LemonForTea",
+   "link": "https://vadim-losenkov.ru/lemonfortea",
+   "time": "2 недели 2 дня",
+   "description": "Небольшой 5-и страничный магазин, на котором используется множество различных технологий, используется как продажник для курса по инвестициям от популярного сообщества",
+   "srcDesc": "images/content/lemonfortea-mob.jpg",
+   "srcMobile": "images/content/lemonfortea.jpg",
+   "groups": "\"all\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/lemonfortea/main.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/lemonfortea/index.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "7",
+   "title": "GMbet",
+   "link": "https://vadim-losenkov.ru/gmbet",
+   "time": "1 неделя 3 дня",
+   "description": "Стандартный одностраничник (landing-page), созданный для инвестирования в ставки на спорт. Используется современные технологии",
+   "srcDesc": "images/content/gmbet.jpg",
+   "srcMobile": "images/content/gmbet-mob.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "8",
+   "title": "book-house",
+   "link": "https://vadim-losenkov.ru/book-house",
+   "time": "7 недель 2 дня",
+   "description": "Большой интернет магазин, на котором используется множество различных технологий, состоящий из 25 страниц. Каждая страница адаптивна (хорошо выглядит как на ПК так и на телефоне).",
+   "srcDesc": "images/content/project-book.jpg",
+   "srcMobile": "images/content/project-book-mobile.jpg",
+   "groups": "\"all\", \"ecom\", \"mp\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "Gulp 5"
+   ],
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/book-house/main.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/book-house/index.html"
+     }
+    ]
+   }
+  },
+  {
+   "id": "9",
+   "title": "inventa",
+   "link": "https://vadim-losenkov.ru/inventa",
+   "time": "2 недели 1 день",
+   "description": "Сайт компании, предоставляющей услуги установки подогреваемых полов. Сайт выполнен с большим использованием JavaScript без использования $. Адаптирован под мобильные телефоны",
+   "srcDesc": "images/content/inventa.jpg",
+   "srcMobile": "images/content/inv-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "9",
+   "title": "design-repair",
+   "link": "https://vadim-losenkov.ru/design-repair",
+   "time": "1 неделя 6 дней",
+   "description": "landing-page (одностраничный сайт) с использованием $, созданный для компании дизайнеров в городе Ростов-На-Дону. Сайт адаптирован под мобильные устройства",
+   "srcDesc": "images/content/design.jpg",
+   "srcMobile": "images/content/design-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "10",
+   "title": "vpn",
+   "link": "https://vadim-losenkov.ru/vpn",
+   "time": "1 неделя 4 дня",
+   "description": "Небольшой сайт, для продажи vpn серверов. Был выполнен с использованием технологии Flexbox + $. Адаптирован под мобильные устройства",
+   "srcDesc": "images/content/vpn.jpg",
+   "srcMobile": "images/content/vpn-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "11",
+   "title": "rocket",
+   "link": "https://vadim-losenkov.ru/rocket",
+   "time": "4 дня",
+   "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
+   "srcDesc": "images/content/rocket.jpg",
+   "srcMobile": "images/content/rocket-mob.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "12",
+   "title": "StroyControl",
+   "link": "https://vadim-losenkov.ru/StroyControl",
+   "time": "1 неделя 2 дня",
+   "description": "Сайт выполнен для компании занимающейся доставкой строительных материалов. На сайте используется несколько $ плагинов, что не мешает его производительности (90+ баллов на GPSpeed). Сайт полностью адаптирован под мобильные устройства",
+   "srcDesc": "images/content/stroy.jpg",
+   "srcMobile": "images/content/stroy-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "13",
+   "title": "Supplement",
+   "link": "https://vadim-losenkov.ru/supplement",
+   "time": "6 дней",
+   "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
+   "srcDesc": "images/content/supplement.jpg",
+   "srcMobile": "images/content/supplement-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
+  }
+ ]
