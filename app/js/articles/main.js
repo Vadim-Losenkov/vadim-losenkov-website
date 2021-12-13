@@ -184,64 +184,70 @@ function getPosts(item = 'all') {
   })
 }
 
-filter('.portfolio__filter-inner')
+(function INIT() {
+  filter('.portfolio__filter-inner')
+  $PORTFOLIO_WRAPPER.addEventListener('click', (event) => {
 
-$(function () {
-  $('.portfolio__inner').magnificPopup({
-    delegate: '.popup',
-    type: 'inline',
-    removalDelay: 500, //delay removal by X to allow out-animation
-    callbacks: {
-      beforeOpen: function () {
-        this.st.mainClass = this.st.el.attr('data-effect');
-      }
-    },
-    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-  });
+  })
+
+  $(function () {
+    $($PORTFOLIO_WRAPPER).magnificPopup({
+      delegate: '.popup',
+      type: 'inline',
+      removalDelay: 500, //delay removal by X to allow out-animation
+      callbacks: {
+        beforeOpen: function () {
+          this.st.mainClass = this.st.el.attr('data-effect');
+        }
+      },
+      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
 
 
-  let progressPath = document.querySelector('.progress-wrap path');
-  let pathLength = progressPath.getTotalLength();
-  progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
-  progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-  progressPath.style.strokeDashoffset = pathLength;
-  progressPath.getBoundingClientRect();
-  progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
-  let updateProgress = function () {
-    let scroll = $(window).scrollTop();
-    let height = $(document).height() - $(window).height();
-    let progress = pathLength - (scroll * pathLength / height);
-    progressPath.style.strokeDashoffset = progress;
-  }
-  updateProgress();
-  $(window).scroll(updateProgress);
-  let offset = 50;
-  let duration = 550;
-  $(window).on('scroll', function () {
-    if ($(this).scrollTop() > offset) {
-      $('.progress-wrap').addClass('active-progress');
-    } else {
-      $('.progress-wrap').removeClass('active-progress');
+    let progressPath = document.querySelector('.progress-wrap path');
+    let pathLength = progressPath.getTotalLength();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+    progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+    progressPath.style.strokeDashoffset = pathLength;
+    progressPath.getBoundingClientRect();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+    let updateProgress = function () {
+      let scroll = $(window).scrollTop();
+      let height = $(document).height() - $(window).height();
+      let progress = pathLength - (scroll * pathLength / height);
+      progressPath.style.strokeDashoffset = progress;
     }
-  })
+    updateProgress();
+    $(window).scroll(updateProgress);
+    let offset = 50;
+    let duration = 550;
+    $(window).on('scroll', function () {
+      if ($(this).scrollTop() > offset) {
+        $('.progress-wrap').addClass('active-progress');
+      } else {
+        $('.progress-wrap').removeClass('active-progress');
+      }
+    })
 
-  $('.portfolio__project-description__title').on('click', function () {
-    const $description = $(this).siblings('.portfolio__project-wrapper')
-    $(this).toggleClass('open')
-    $description.slideToggle()
+    $('.portfolio__project-description__title').on('click', function (event) {
+      console.log(event);
+      const $description = $(this).siblings('.portfolio__project-wrapper')
+      $(this).toggleClass('open')
+      $description.slideToggle()
+    })
+    $('[href="scrollTop"]').click(function (event) {
+      event.preventDefault()
+      setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
+    })
+    const $menu = $('.mobile-menu')
+    const $btn = $('.header__btn')
+    $btn.on('click', () => {
+      $btn.toggleClass('open')
+      $menu.toggleClass('open')
+    })
+    $('.mobile-menu__item').on('click', () => {
+      $menu.toggleClass('open')
+      $btn.toggleClass('open')
+    })
   })
-  $('[href="scrollTop"]').click(function (event) {
-    event.preventDefault()
-    setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
-  })
-  const $menu = $('.mobile-menu')
-  const $btn = $('.header__btn')
-  $btn.on('click', () => {
-    $btn.toggleClass('open')
-    $menu.toggleClass('open')
-  })
-  $('.mobile-menu__item').on('click', () => {
-    $menu.toggleClass('open')
-    $btn.toggleClass('open')
-  })
-})
+} ())
