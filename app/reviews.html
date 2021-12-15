@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta https-equiv="X-UA-Compatible" content="ie=edge">
   <title>Вадим Лосенков</title>
-  
+
   <link rel="stylesheet" href="css/style.min.css">
-  
-  <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+
+  <!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script>
   <script>
     eruda.init();
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -37,10 +37,10 @@
           <h6 class="mobile-menu__title">
             Навигация по сайту
           </h6>
-          <a href="scrollTop" class="mobile-menu__item" data-target="about">Обо мне</a>
-          <a href="scrollTop" class="mobile-menu__item" data-target="portfolio">Портфолио</a>
-          <a href="scrollTop" class="mobile-menu__item" data-target="social">Соц. Сети</a>
-          <a href="scrollTop" class="mobile-menu__item" data-target="reviews">Отзывы</a>
+          <a href="scrollTop" class="mobile-menu__item" data-target="about.html">Обо мне</a>
+          <a href="scrollTop" class="mobile-menu__item" data-target="portfolio.html">Портфолио</a>
+          <a href="scrollTop" class="mobile-menu__item" data-target="social.html">Соц. Сети</a>
+          <a href="scrollTop" class="mobile-menu__item open" data-target="reviews.html">Отзывы</a>
           <div class="mobile-menu__footer">
             <span>
               Версия сайта: v1.4.4
@@ -59,10 +59,73 @@
                 Внимание!
               </div>
               <div class="reviews__warning-inner">
-                Все отзывы настоящие, написаны настоящими людьми и взяты из моего личного профиля на фриланс бирже <a target="_blank" href="https://www.weblancer.net/users/vadim_losenkov/reviews/?account_type=freelancer">weblancer.net</a>
+                Все отзывы настоящие, написаны настоящими людьми и взяты из моего личного профиля на фриланс бирже <a
+                  target="_blank"
+                  href="https://www.weblancer.net/users/vadim_losenkov/reviews/?account_type=freelancer">weblancer.net</a>
               </div>
             </div>
-            <div class="reviews__inner" id="reviews"></div>
+            <div class="reviews__inner" id="reviews">
+              <div class="reviews__item">
+                <div class="reviews__item-header">
+                  <div class="reviews__item-title"></div>
+                  <div class="reviews__item-price">
+                    <span>loading...</span>
+                  </div>
+                </div>
+                <div class="reviews__item-text wow fadeInRight" data-wow-duration="2s">
+                  <br>
+                  <br>
+                  <br>
+                </div>
+                <div class="reviews__item-button">
+                  <div target="_blank" class="reviews__item-link">открыть отзыв</div>
+                </div>
+                <div class="reviews__item-footer">
+                  <div class="reviews__item-name">user_name</div>
+                  <div class="reviews__item-time">review_date</div>
+                </div>
+              </div>
+              <div class="reviews__item">
+                <div class="reviews__item-header">
+                  <div class="reviews__item-title"></div>
+                  <div class="reviews__item-price">
+                    <span>loading...</span>
+                  </div>
+                </div>
+                <div class="reviews__item-text wow fadeInRight" data-wow-duration="2s">
+                  <br>
+                  <br>
+                  <br>
+                </div>
+                <div class="reviews__item-button">
+                  <div target="_blank" class="reviews__item-link">открыть отзыв</div>
+                </div>
+                <div class="reviews__item-footer">
+                  <div class="reviews__item-name">user_name</div>
+                  <div class="reviews__item-time">review_date</div>
+                </div>
+              </div>
+              <div class="reviews__item">
+                <div class="reviews__item-header">
+                  <div class="reviews__item-title"></div>
+                  <div class="reviews__item-price">
+                    <span>loading...</span>
+                  </div>
+                </div>
+                <div class="reviews__item-text wow fadeInRight" data-wow-duration="2s">
+                  <br>
+                  <br>
+                  <br>
+                </div>
+                <div class="reviews__item-button">
+                  <div target="_blank" class="reviews__item-link">открыть отзыв</div>
+                </div>
+                <div class="reviews__item-footer">
+                  <div class="reviews__item-name">user_name</div>
+                  <div class="reviews__item-time">review_date</div>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
         <aside class="aside">
@@ -72,24 +135,24 @@
             </h6>
             <ul class="nav-list">
               <li class="nav-item">
-                <span class="nav-link" data-target="about">
+                <a href="about.html" class="nav-link" data-target="about.html">
                   Обо мне
-                </span>
+                </a>
               </li>
               <li class="nav-item">
-                <span class="nav-link" data-target="portfolio">
+                <a href="portfolio.html" class="nav-link" data-target="portfolio.html">
                   Портфолио
-                </span>
+                </a>
               </li>
               <li class="nav-item">
-                <span class="nav-link" data-target="social">
+                <a href="social.html" class="nav-link" data-target="social.html">
                   Соц. сети
-                </span>
+                </a>
               </li>
               <li class="nav-item">
-                <span class="nav-link" data-target="reviews">
+                <a href="reviews.html" class="nav-link open" data-target="reviews.html">
                   Отзывы
-                </span>
+                </a>
               </li>
             </ul>
             <div class="nav__footer">
@@ -115,4 +178,5 @@
   <script src="js/global/axios.min.js"></script>
   <script src="js/reviews/main.js"></script>
 </body>
+
 </html>

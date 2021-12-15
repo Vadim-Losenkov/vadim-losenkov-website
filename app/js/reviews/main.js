@@ -1,47 +1,16 @@
-const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
-const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
+const $REVIEWS_WRAPPER = document.querySelector('#reviews')
 
 let reviews
 
-function filter(wrapper) {
-  getPosts('all')
-
-  const $wrapper = document.querySelector(wrapper)
-  const $items = $wrapper.querySelectorAll('[data-target]')
-
-  $wrapper.addEventListener('click', (event) => {
-    const $target = event.target.closest('[data-target]')
-    if ($target && !$target.querySelector('span').classList.contains('open')) {
-      $PORTFOLIO_WRAPPER.innerHTML = `
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-      `
-      $items.forEach($el => {
-        $el.querySelector('span').classList.remove('open')
-      })
-      $target.querySelector('span').classList.add('open')
-
-      const $item = $target.dataset.target
-      getPosts($item)
-    }
-  })
+function filter() {
+  getPosts()
 }
 
 class Reviews {
   constructor(selector) {
-    this.$reviews = document.querySelector(selector)
+    this.$reviews = selector instanceof HTMLElement
+      ? selector
+      : document.querySelector(selector)
     this.render()
   }
   
@@ -74,15 +43,17 @@ class Reviews {
   }
 }
 
-function getPosts(item = 'all') {
+function getPosts() {
   axios.get(`../app/data/reviews.json`).then((resp) => {
     reviews = resp.data
 
-    new Reviews('#reviews')
+    new Reviews($REVIEWS_WRAPPER)
   })
 }
 
 (function INIT() {
+  filter($REVIEWS_WRAPPER)
+
   $(function () {
     (function arrowScrollbar() {
       let progressPath = document.querySelector('.progress-wrap path');
