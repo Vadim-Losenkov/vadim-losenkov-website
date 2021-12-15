@@ -30,7 +30,6 @@
     display: none;
   }
 }
-
 .mobile-menu {
   opacity: 0;
   transition: opacity .3s;
@@ -171,6 +170,9 @@
   &__filter-itemwrapper {
     padding-bottom: 10px;
     display: inline-block;
+  }
+  &__project-image {
+    max-height: 360px !important;
   }
   &__project-image span.open,
   &__filter span.open {

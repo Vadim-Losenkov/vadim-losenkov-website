@@ -305,6 +305,30 @@ const posts = [
 ]
 const reviews = [
   {
+    name: 'Екатерина Слипченко',
+    price: [50, 1420, 3659],
+    title: 'Верстка лэндинга',
+    description: 'Спасибо Вадиму за работу! Все выполнено в срок, все пожелания учтены. Рекомендую Вадима как профессионала и ответственного исполнителя!',
+    date: '04.11.2021 в 12:30',
+    link: 'https://www.weblancer.net/projects/html-verstka-32/verstka-lendinga-1135368/'
+  },
+  {
+    name: 'Данил Язычев',
+    price: [50, 1420, 3659],
+    title: 'Верстка сайта',
+    description: 'Отличная работа',
+    date: '28.10.2021 в 18:48',
+    link: 'https://www.weblancer.net/projects/html-verstka-32/verstka-sajta-1136683/'
+  },
+  {
+    name: 'Игорь Нагибин',
+    price: [10, 1420, 3659],
+    title: 'Адаптивная верстка страницы',
+    description: 'Верстка отличная, все было выполнено вовремя. Рекомендую!',
+    date: '24.10.2021 в 17:13',
+    link: 'https://www.weblancer.net/projects/html-verstka-32/adaptivnaya-verstka-stranitcy-1135792/'
+  },
+  {
     name: 'Данила Катышев',
     price: [5, 1420, 3659],
     title: 'Сделать горизонтальный аккардион для сайта на jQuery.',

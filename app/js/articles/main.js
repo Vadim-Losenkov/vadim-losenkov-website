@@ -1,4 +1,3 @@
-const POSTS_HASH = '61ac9c7ed228a9001703ab64'
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
 const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
 
@@ -158,7 +157,6 @@ class Poster {
 }
 
 function getPosts(item = 'all') {
-  // axios.get(`https://${POSTS_HASH}.mockapi.io/${item}`).then((resp) => {
   axios.get(`../app/data/${item}.json`).then((resp) => {
     posts = resp.data
 
@@ -181,15 +179,18 @@ function getPosts(item = 'all') {
         },
       },
     })
+    
+    $('.portfolio__project-description__title').on('click', function (event) {
+      const $description = $(this).siblings('.portfolio__project-wrapper')
+      $(this).toggleClass('open')
+      $description.slideToggle()
+    })
   })
 }
 
 (function INIT() {
   filter('.portfolio__filter-inner')
-  $PORTFOLIO_WRAPPER.addEventListener('click', (event) => {
-
-  })
-
+  
   $(function () {
     $($PORTFOLIO_WRAPPER).magnificPopup({
       delegate: '.popup',
@@ -202,39 +203,34 @@ function getPosts(item = 'all') {
       },
       midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
     });
-
-
-    let progressPath = document.querySelector('.progress-wrap path');
-    let pathLength = progressPath.getTotalLength();
-    progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
-    progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-    progressPath.style.strokeDashoffset = pathLength;
-    progressPath.getBoundingClientRect();
-    progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
-    let updateProgress = function () {
-      let scroll = $(window).scrollTop();
-      let height = $(document).height() - $(window).height();
-      let progress = pathLength - (scroll * pathLength / height);
-      progressPath.style.strokeDashoffset = progress;
-    }
-    updateProgress();
-    $(window).scroll(updateProgress);
-    let offset = 50;
-    let duration = 550;
-    $(window).on('scroll', function () {
-      if ($(this).scrollTop() > offset) {
-        $('.progress-wrap').addClass('active-progress');
-      } else {
-        $('.progress-wrap').removeClass('active-progress');
+    
+    (function arrowScrollbar() {
+      let progressPath = document.querySelector('.progress-wrap path');
+      let pathLength = progressPath.getTotalLength();
+      progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+      progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+      progressPath.style.strokeDashoffset = pathLength;
+      progressPath.getBoundingClientRect();
+      progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+      let updateProgress = function () {
+        let scroll = $(window).scrollTop();
+        let height = $(document).height() - $(window).height();
+        let progress = pathLength - (scroll * pathLength / height);
+        progressPath.style.strokeDashoffset = progress;
       }
-    })
+      updateProgress();
+      $(window).scroll(updateProgress);
+      let offset = 50;
+      let duration = 550;
+      $(window).on('scroll', function () {
+        if ($(this).scrollTop() > offset) {
+          $('.progress-wrap').addClass('active-progress');
+        } else {
+          $('.progress-wrap').removeClass('active-progress');
+        }
+      })
+    }())
 
-    $('.portfolio__project-description__title').on('click', function (event) {
-      console.log(event);
-      const $description = $(this).siblings('.portfolio__project-wrapper')
-      $(this).toggleClass('open')
-      $description.slideToggle()
-    })
     $('[href="scrollTop"]').click(function (event) {
       event.preventDefault()
       setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
