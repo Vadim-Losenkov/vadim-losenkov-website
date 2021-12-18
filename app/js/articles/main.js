@@ -1,36 +1,41 @@
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
 const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
 
-let sliderS
-
-let lazyImages
+let $posts
 const windowHeight = document.documentElement.clientHeight
-
 let lazyImagesPositions = []
 
 function lazyScrollCheck() {
   let imgIndex = lazyImagesPositions.findIndex(item => pageYOffset > item - windowHeight)
 
-  if (imgIndex >= 0 ) {
-    if (lazyImages[imgIndex].dataset.src) {
-      lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.src
-      lazyImages[imgIndex].removeAttribute('data-src')
-    } else if (lazyImages[imgIndex].dataset.srcset) {
-      lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.srcset
-      lazyImages[imgIndex].removeAttribute('data-src')
+  if (imgIndex >= 0) {
+    const images = $posts[imgIndex].querySelectorAll('[data-src]')
+    if (images) {
+      images.forEach(img => {
+        img.src = img.dataset.src
+        img.removeAttribute('data-src')
+      })
     }
 
     delete lazyImagesPositions[imgIndex]
   }
+
+  // if (imgIndex >= 0 ) {
+  //   if (lazyImages[imgIndex].dataset.src) {
+  //     lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.src
+  //     lazyImages[imgIndex].removeAttribute('data-src')
+  //   } else if (lazyImages[imgIndex].dataset.srcset) {
+  //     lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.srcset
+  //     lazyImages[imgIndex].removeAttribute('data-src')
+  //   }
+
+  //   delete lazyImagesPositions[imgIndex]
+  // }
 }
 
 function lazyScroll() {
-  if (document.querySelectorAll('img[data-src]').length > 0) {
-    lazyScrollCheck()
-  }
+  lazyScrollCheck()
 }
-
-let posts
 
 function filter(wrapper) {
   getPosts('all')
@@ -38,9 +43,14 @@ function filter(wrapper) {
   const $wrapper = document.querySelector(wrapper)
   const $items = $wrapper.querySelectorAll('[data-target]')
 
+  lazyImagesPositions = []
+
   $wrapper.addEventListener('click', (event) => {
+
     const $target = event.target.closest('[data-target]')
     if ($target && !$target.querySelector('span').classList.contains('open')) {
+      window.addEventListener('scroll', lazyScroll)
+
       $PORTFOLIO_WRAPPER.innerHTML = `
         <div class="portfolio__card--loading">
           <div class="portfolio__card-link--loading"></div>
@@ -194,7 +204,7 @@ function getPosts(item = 'all') {
       modals: $MODALS_WRAPPER,
     })
     
-    sliderS = new Swiper(".card-slider", {
+    sliderS = new Swiper('.card-slider', {
       spaceBetween: 30,
       autoplay: {
         delay: 2500,
@@ -208,18 +218,13 @@ function getPosts(item = 'all') {
         },
       },
     })
-    // sliderS && sliderS.disable()
-    
-    lazyImages = document.querySelectorAll('img[data-src]')
-    console.log(lazyImagesPositions);
-    if (lazyImages.length > 0) {
-      lazyImages.forEach(img => {
-        if (img.dataset.src) {
-          lazyImagesPositions.push(img.getBoundingClientRect().top + pageYOffset)
-          lazyScrollCheck()
-        }
-      })
-    }
+
+    $posts = $PORTFOLIO_WRAPPER.querySelectorAll('.project-card')
+    lazyImagesPositions = []
+    $posts.forEach($p => {
+      lazyImagesPositions.push($p.getBoundingClientRect().top + pageYOffset)
+    })
+    lazyScrollCheck()
     
     window.addEventListener('scroll', lazyScroll)
     // сделать дестрой свайпера!!!
@@ -233,7 +238,7 @@ function getPosts(item = 'all') {
 
 (function INIT() {
   filter('.portfolio__filter-inner')
-  
+
   $(function () {
     $($PORTFOLIO_WRAPPER).magnificPopup({
       delegate: '.popup',
