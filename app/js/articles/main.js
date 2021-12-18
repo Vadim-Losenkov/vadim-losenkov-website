@@ -1,18 +1,12 @@
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
 const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
 
-const lazyImages = document.querySelectorAll('img[data-src]')
+let sliderS
+
+let lazyImages
 const windowHeight = document.documentElement.clientHeight
 
 let lazyImagesPositions = []
-if (lazyImages.length > 0) {
-  lazyImages.forEach(img => {
-    if (img.dataset.src) {
-      lazyImagesPositions.push(img.getBoundingClientRect().top + pageYOffset)
-      lazyScrollCheck()
-    }
-  })
-}
 
 function lazyScrollCheck() {
   let imgIndex = lazyImagesPositions.findIndex(item => pageYOffset > item - windowHeight)
@@ -27,6 +21,12 @@ function lazyScrollCheck() {
     }
 
     delete lazyImagesPositions[imgIndex]
+  }
+}
+
+function lazyScroll() {
+  if (document.querySelectorAll('img[data-src]').length > 0) {
+    lazyScrollCheck()
   }
 }
 
@@ -63,6 +63,7 @@ function filter(wrapper) {
       $target.querySelector('span').classList.add('open')
 
       const $item = $target.dataset.target
+      
       getPosts($item)
     }
   })
@@ -96,11 +97,11 @@ class Poster {
               <div class="portfolio__project-images swiper-wrapper" data-tabson="items">
                 <a href="#${post.title}" data-effect="mfp-zoom-in" data-post="${index}" data-popup="desc" class="portfolio__project-img swiper-slide open popup"
                   data-item="1">
-                  <img src="${post.srcDesc}" />
+                  <img data-src="${post.srcDesc}" />
                 </a>
                 <a href="#${post.title}-mobile" data-effect="mfp-zoom-in" data-post="${index}" data-popup="mobile" class="portfolio__project-img swiper-slide popup"
                   data-item="2">
-                  <img src="${post.srcMobile}" />
+                  <img data-src="${post.srcMobile}" />
                 </a>
               </div>
               <div class="portfolio__project-pagination"></div>
@@ -192,9 +193,8 @@ function getPosts(item = 'all') {
       portfolio: $PORTFOLIO_WRAPPER,
       modals: $MODALS_WRAPPER,
     })
-
-    // сделать дестрой свайпера!!!
-    new Swiper(".card-slider", {
+    
+    sliderS = new Swiper(".card-slider", {
       spaceBetween: 30,
       autoplay: {
         delay: 2500,
@@ -208,7 +208,21 @@ function getPosts(item = 'all') {
         },
       },
     })
+    // sliderS && sliderS.disable()
     
+    lazyImages = document.querySelectorAll('img[data-src]')
+    console.log(lazyImagesPositions);
+    if (lazyImages.length > 0) {
+      lazyImages.forEach(img => {
+        if (img.dataset.src) {
+          lazyImagesPositions.push(img.getBoundingClientRect().top + pageYOffset)
+          lazyScrollCheck()
+        }
+      })
+    }
+    
+    window.addEventListener('scroll', lazyScroll)
+    // сделать дестрой свайпера!!!
     $('.portfolio__project-description__title').on('click', function (event) {
       const $description = $(this).siblings('.portfolio__project-wrapper')
       $(this).toggleClass('open')
