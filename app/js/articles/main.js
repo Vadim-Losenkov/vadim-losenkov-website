@@ -1,8 +1,20 @@
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
 const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
+const defaultFilterSettings = {
+  item: 'all', 
+  filter: {filterBy: '', from: ''}
+  // filter: {filterBy: 'speed', from: 'top'}
+    // {filterBy: 'date', from: 'top'}, 
+    // {filterBy: 'name', from: 'top'}, 
+    // {filterBy: 'tech', from: []}
+  
+}
 
-let $posts
 const windowHeight = document.documentElement.clientHeight
+
+let poster
+let $posts
+let stateItem = 'all'
 let lazyImagesPositions = []
 
 function lazyScrollCheck() {
@@ -19,64 +31,10 @@ function lazyScrollCheck() {
 
     delete lazyImagesPositions[imgIndex]
   }
-
-  // if (imgIndex >= 0 ) {
-  //   if (lazyImages[imgIndex].dataset.src) {
-  //     lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.src
-  //     lazyImages[imgIndex].removeAttribute('data-src')
-  //   } else if (lazyImages[imgIndex].dataset.srcset) {
-  //     lazyImages[imgIndex].src = lazyImages[imgIndex].dataset.srcset
-  //     lazyImages[imgIndex].removeAttribute('data-src')
-  //   }
-
-  //   delete lazyImagesPositions[imgIndex]
-  // }
 }
 
 function lazyScroll() {
   lazyScrollCheck()
-}
-
-function filter(wrapper) {
-  getPosts('all')
-
-  const $wrapper = document.querySelector(wrapper)
-  const $items = $wrapper.querySelectorAll('[data-target]')
-
-  lazyImagesPositions = []
-
-  $wrapper.addEventListener('click', (event) => {
-
-    const $target = event.target.closest('[data-target]')
-    if ($target && !$target.querySelector('span').classList.contains('open')) {
-      window.addEventListener('scroll', lazyScroll)
-
-      $PORTFOLIO_WRAPPER.innerHTML = `
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-      `
-      $items.forEach($el => {
-        $el.querySelector('span').classList.remove('open')
-      })
-      $target.querySelector('span').classList.add('open')
-
-      const $item = $target.dataset.target
-      
-      getPosts($item)
-    }
-  })
 }
 
 class Poster {
@@ -195,16 +153,111 @@ class Poster {
   }
 }
 
-function getPosts(item = 'all') {
-  axios.get(`../app/data/${item}.json`).then((resp) => {
-    posts = resp.data
+function filter(wrapper) {
+  getPosts(defaultFilterSettings, true)
 
-    new Poster({
+  const $wrapper = document.querySelector(wrapper)
+  const $items = $wrapper.querySelectorAll('[data-target]')
+
+  lazyImagesPositions = []
+
+  $wrapper.addEventListener('click', (event) => {
+    const $target = event.target.closest('[data-filter]')
+    const defaultCondition = $target && !$target.querySelector('span').classList.contains('open')
+    
+    if (defaultCondition) {
+      const useFilter = {
+        filterBy: $target.dataset.filter,
+        from: $target.dataset.position
+      }
+      const useRerender = $target.dataset.target
+      if (useFilter.filterBy) {
+        getPosts({item: stateItem, filter: useFilter})
+        
+      }
+    }
+    /* if ($target && !$target.querySelector('span').classList.contains('open')) {
+      window.removeEventListener('scroll', lazyScroll)
+      
+      const $item = $target.dataset.target
+      
+      $item ? $PORTFOLIO_WRAPPER.innerHTML = `
+        <div class="portfolio__card--loading">
+          <div class="portfolio__card-link--loading"></div>
+          <div class="portfolio__card-image--loading"></div>
+          <div class="portfolio__card-filter--loading"></div>
+          <div class="portfolio__card-button--loading"></div>
+          <div class="portfolio__card-descripton--loading"></div>
+        </div>
+        <div class="portfolio__card--loading">
+          <div class="portfolio__card-link--loading"></div>
+          <div class="portfolio__card-image--loading"></div>
+          <div class="portfolio__card-filter--loading"></div>
+          <div class="portfolio__card-button--loading"></div>
+          <div class="portfolio__card-descripton--loading"></div>
+        </div>
+      `
+      : ''
+      
+      $items.forEach($el => {
+        $el.querySelector('span').classList.remove('open')
+      })
+      
+      $target.querySelector('span').classList.add('open')
+      
+      $item 
+        ? getPosts({item: $item, filter: filterObj}) 
+        : getPosts({item: stateItem, filter: filterObj})
+    }
+*/
+  })
+}
+
+function getPosts(settings = defaultFilterSettings, R) {
+  if (settings.item !== stateItem || R) {
+    rerender()
+  } else {
+    setFilter()
+  }
+  
+  function rerender() {
+    axios.get(`../app/data/${settings.item}.json`).then((resp) => {
+      posts = resp.data
+      
+      setPosts()
+      setFilter()
+    })
+  }
+  function setFilter() {
+    const pos = settings.filter.from
+    switch (settings.filter.filterBy) {
+      case 'speed':
+        pos === 'top' 
+          ? posts.sort((firstItem, secondItem) => firstItem.speed - secondItem.speed)
+          : posts.sort((firstItem, secondItem) => firstItem.speed - secondItem.speed).reverse()
+        break;
+      case 'date':
+        pos === 'top' 
+          ? posts
+          : posts.reverse()
+        break;
+      case 'name':
+        pos === 'top' 
+          ? posts
+          : posts.reverse()
+        break;
+    }
+    
+    poster.render()
+    setPosts()
+  }
+  function setPosts() {
+    poster = new Poster({
       portfolio: $PORTFOLIO_WRAPPER,
       modals: $MODALS_WRAPPER,
     })
     
-    sliderS = new Swiper('.card-slider', {
+    new Swiper('.card-slider', {
       spaceBetween: 30,
       autoplay: {
         delay: 2500,
@@ -227,13 +280,13 @@ function getPosts(item = 'all') {
     lazyScrollCheck()
     
     window.addEventListener('scroll', lazyScroll)
-    // сделать дестрой свайпера!!!
+    
     $('.portfolio__project-description__title').on('click', function (event) {
       const $description = $(this).siblings('.portfolio__project-wrapper')
       $(this).toggleClass('open')
       $description.slideToggle()
     })
-  })
+  }
 }
 
 (function INIT() {
@@ -278,7 +331,11 @@ function getPosts(item = 'all') {
         }
       })
     }())
-
+    
+    $('.portfolio__filter-opener').on('click', function (event) {
+      $(this).toggleClass('open')
+      $('.portfolio__filter-inner').slideToggle()
+    })
     $('[href="scrollTop"]').click(function (event) {
       event.preventDefault()
       setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);

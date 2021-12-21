@@ -1,9 +1,29 @@
 [
   {
-   "id": "1",
+   "id": "3",
+   "title": "SEO",
+   "link": "https://vadim-losenkov.ru/seo",
+   "speed": 3,
+   "time": "3 дня",
+   "description": "Cайт продажник компании по продвижению бизнес проектов. Разработка велась на SCSS + JS. JQuery не используется",
+   "srcDesc": "images/content/seo.jpg",
+   "srcMobile": "images/content/seo-mob.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JQuery",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "4",
    "title": "Crypto",
    "link": "https://vadim-losenkov.ru/crypto/lang-ru.html",
-   "time": "5 дней",
+   "time": "4 дня",
+   "speed": 4,
    "description": "Небольшой сайт продажник инвестиций в криптовалюты. Сайт был разработан всего за 5 дней. При адаптировании сайта все элементы сайта сохранены.",
    "srcDesc": "images/content/crypto.jpg",
    "srcMobile": "images/content/crypto-mob.jpg",
@@ -31,28 +51,11 @@
    ]
   },
   {
-   "id": "2",
-   "title": "SEO",
-   "link": "https://vadim-losenkov.ru/seo",
-   "time": "1 неделя 1 день",
-   "description": "Cайт продажник компании по продвижению бизнес проектов. Разработка велась на SCSS + JS. JQuery не используется",
-   "srcDesc": "images/content/seo.jpg",
-   "srcMobile": "images/content/seo-mob.jpg",
-   "groups": "\"all\", \"land\"",
-   "useList": [
-    "HTML5",
-    "Flexbox",
-    "SCSS",
-    "JQuery",
-    "JavaScript",
-    "Gulp 5"
-   ]
-  },
-  {
-   "id": "3",
+   "id": "7",
    "title": "GMbet",
    "link": "https://vadim-losenkov.ru/gmbet",
-   "time": "1 неделя 3 дня",
+   "time": "3 дня",
+   "speed": 3,
    "description": "Стандартный одностраничник (landing-page), созданный для инвестирования в ставки на спорт. Используется современные технологии",
    "srcDesc": "images/content/gmbet.jpg",
    "srcMobile": "images/content/gmbet-mob.jpg",
@@ -67,10 +70,11 @@
    ]
   },
   {
-   "id": "4",
+   "id": "9",
    "title": "design-repair",
    "link": "https://vadim-losenkov.ru/design-repair",
-   "time": "1 неделя 6 дней",
+   "time": "4 дня",
+   "speed": 4,
    "description": "landing-page (одностраничный сайт) с использованием $, созданный для компании дизайнеров в городе Ростов-На-Дону. Сайт адаптирован под мобильные устройства",
    "srcDesc": "images/content/design.jpg",
    "srcMobile": "images/content/design-mobile.jpg",
@@ -85,10 +89,11 @@
    ]
   },
   {
-   "id": "5",
+   "id": "9",
    "title": "inventa",
    "link": "https://vadim-losenkov.ru/inventa",
-   "time": "2 недели 1 день",
+   "time": "2 дня",
+   "speed": 2,
    "description": "Сайт компании, предоставляющей услуги установки подогреваемых полов. Сайт выполнен с большим использованием JavaScript без использования $. Адаптирован под мобильные телефоны",
    "srcDesc": "images/content/inventa.jpg",
    "srcMobile": "images/content/inv-mobile.jpg",
@@ -102,10 +107,11 @@
    ]
   },
   {
-   "id": "5",
+   "id": "10",
    "title": "vpn",
    "link": "https://vadim-losenkov.ru/vpn",
-   "time": "1 неделя 4 дня",
+   "time": "2 дня",
+   "speed": 2,
    "description": "Небольшой сайт, для продажи vpn серверов. Был выполнен с использованием технологии Flexbox + $. Адаптирован под мобильные устройства",
    "srcDesc": "images/content/vpn.jpg",
    "srcMobile": "images/content/vpn-mobile.jpg",
@@ -120,10 +126,11 @@
    ]
   },
   {
-   "id": "6",
+   "id": "11",
    "title": "rocket",
    "link": "https://vadim-losenkov.ru/rocket",
-   "time": "4 дня",
+   "time": "1 день",
+   "speed": 1,
    "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
    "srcDesc": "images/content/rocket.jpg",
    "srcMobile": "images/content/rocket-mob.jpg",
@@ -138,28 +145,11 @@
    ]
   },
   {
-   "id": "7",
-   "title": "Supplement",
-   "link": "https://vadim-losenkov.ru/supplement",
-   "time": "6 дней",
-   "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
-   "srcDesc": "images/content/supplement.jpg",
-   "srcMobile": "images/content/supplement-mobile.jpg",
-   "groups": "\"all\", \"land\"",
-   "useList": [
-    "HTML5",
-    "Flexbox",
-    "SCSS",
-    "JavaScript",
-    "JQuery",
-    "Gulp 5"
-   ]
-  },
-  {
-   "id": "8",
+   "id": "12",
    "title": "StroyControl",
    "link": "https://vadim-losenkov.ru/StroyControl",
-   "time": "1 неделя 2 дня",
+   "time": "2 дня",
+   "speed": 2,
    "description": "Сайт выполнен для компании занимающейся доставкой строительных материалов. На сайте используется несколько $ плагинов, что не мешает его производительности (90+ баллов на GPSpeed). Сайт полностью адаптирован под мобильные устройства",
    "srcDesc": "images/content/stroy.jpg",
    "srcMobile": "images/content/stroy-mobile.jpg",
@@ -172,5 +162,24 @@
     "JQuery",
     "Gulp 5"
    ]
+  },
+  {
+   "id": "13",
+   "title": "Supplement",
+   "link": "https://vadim-losenkov.ru/supplement",
+   "time": "2 дня",
+   "speed": 2,
+   "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
+   "srcDesc": "images/content/supplement.jpg",
+   "srcMobile": "images/content/supplement-mobile.jpg",
+   "groups": "\"all\", \"land\"",
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "JQuery",
+    "Gulp 5"
+   ]
   }
- ]
+]

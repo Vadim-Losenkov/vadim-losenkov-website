@@ -1,0 +1,25 @@
+@import "global/fonts";
+@import "global/reset";
+@import "global/global";
+
+.about {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  &__text {
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 70px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(#000, 0.09);
+  }
+  &__text-paragraph {
+    margin-bottom: 20px;
+    font-size: 16px;
+    span {
+      margin-left: 30px;
+    }
+  }
+}
+
+@import "media/media";
+

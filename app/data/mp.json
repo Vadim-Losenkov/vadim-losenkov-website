@@ -1,12 +1,41 @@
 [
   {
-   "createdAt": "2021-12-08T07:24:56.738Z",
-   "name": "Willie Kirlin",
-   "avatar": "https://cdn.fakercloud.com/avatars/shesgared_128.jpg",
    "id": "1",
+   "title": "english",
+   "link": "https://vadim-losenkov.ru/english",
+   "time": "2 недели 1 день",
+   "speed": 15,
+   "description": "Сайт для репетитора по английскому языку. Разработка велась на SCSS + JS, без использования JQuery",
+   "srcDesc": "images/content/english.jpg",
+   "srcMobile": "images/content/english-mob.jpg",
+   "groups": "\"all\", \"mp\"",
+   "modal": {
+    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
+    "buttons": [
+     {
+      "name": "главная",
+      "url": "https://vadim-losenkov.ru/english/index.html"
+     },
+     {
+      "name": "карта",
+      "url": "https://vadim-losenkov.ru/english/map.html"
+     }
+    ]
+   },
+   "useList": [
+    "HTML5",
+    "Flexbox",
+    "SCSS",
+    "JavaScript",
+    "Gulp 5"
+   ]
+  },
+  {
+   "id": "2",
    "title": "borowan",
    "link": "https://vadim-losenkov.ru/borowan",
-   "time": "1 неделя 5 деней",
+   "time": "6 дней",
+   "speed": 6,
    "description": "Корпоративный сайт немецкой правовой компании. При разработке использовался Bootstrap 4 и JQuery",
    "srcDesc": "images/content/borowan.jpg",
    "srcMobile": "images/content/borowan-mob.jpg",
@@ -35,46 +64,11 @@
    ]
   },
   {
-   "createdAt": "2021-12-07T13:48:08.879Z",
-   "name": "Danielle Upton",
-   "avatar": "https://cdn.fakercloud.com/avatars/catadeleon_128.jpg",
-   "id": "2",
-   "title": "english",
-   "link": "https://vadim-losenkov.ru/english",
-   "time": "2 недели 1 день",
-   "description": "Сайт для репетитора по английскому языку. Разработка велась на SCSS + JS, без использования JQuery",
-   "srcDesc": "images/content/english.jpg",
-   "srcMobile": "images/content/english-mob.jpg",
-   "groups": "\"all\", \"mp\"",
-   "modal": {
-    "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
-    "buttons": [
-     {
-      "name": "главная",
-      "url": "https://vadim-losenkov.ru/english/index.html"
-     },
-     {
-      "name": "карта",
-      "url": "https://vadim-losenkov.ru/english/map.html"
-     }
-    ]
-   },
-   "useList": [
-    "HTML5",
-    "Flexbox",
-    "SCSS",
-    "JavaScript",
-    "Gulp 5"
-   ]
-  },
-  {
-   "createdAt": "2021-12-08T05:39:23.933Z",
-   "name": "Wilbur Quigley",
-   "avatar": "https://cdn.fakercloud.com/avatars/derekebradley_128.jpg",
-   "id": "3",
+   "id": "4",
    "title": "Rabit",
    "link": "https://vadim-losenkov.ru/rabit",
-   "time": "3 недели 4 дня",
+   "time": "3 недели",
+   "speed": 24,
    "description": "Большой 13-ти страничный сайт компани специализирующейся на починке техники. страниц у сайта не соеденены между собой, поэтому предоставлена карта сайта",
    "srcDesc": "images/content/rabit.jpg",
    "srcMobile": "images/content/rabit-mob.jpg",
@@ -102,13 +96,11 @@
    ]
   },
   {
-   "createdAt": "2021-12-07T22:19:46.649Z",
-   "name": "Alan Fay",
-   "avatar": "https://cdn.fakercloud.com/avatars/reideiredale_128.jpg",
-   "id": "4",
+   "id": "5",
    "title": "Karavan",
    "link": "https://vadim-losenkov.ru/karavan",
-   "time": "2 недели 2 дня",
+   "time": "3 дня",
+   "speed": 3,
    "description": "Сайт выполнен для сети магазинов karavan. Состоит из 5 странтц, каждая страница адаптирована, сам сайт оптимизирован на оценку 90+ на сайте Google Page Speed.",
    "srcDesc": "images/content/karavan.jpg",
    "srcMobile": "images/content/karavan-mob.jpg",
@@ -136,13 +128,11 @@
    ]
   },
   {
-   "createdAt": "2021-12-08T07:32:42.557Z",
-   "name": "Marjorie Okuneva",
-   "avatar": "https://cdn.fakercloud.com/avatars/nomidesigns_128.jpg",
-   "id": "5",
+   "id": "6",
    "title": "LemonForTea",
    "link": "https://vadim-losenkov.ru/lemonfortea",
-   "time": "2 недели 2 дня",
+   "time": "1 неделя 1 день",
+   "speed": 8,
    "description": "Небольшой 5-и страничный магазин, на котором используется множество различных технологий, используется как продажник для курса по инвестициям от популярного сообщества",
    "srcDesc": "images/content/lemonfortea-mob.jpg",
    "srcMobile": "images/content/lemonfortea.jpg",
@@ -170,13 +160,11 @@
    ]
   },
   {
-   "createdAt": "2021-12-08T05:57:19.435Z",
-   "name": "Julie Kertzmann",
-   "avatar": "https://cdn.fakercloud.com/avatars/klefue_128.jpg",
-   "id": "6",
+   "id": "8",
    "title": "book-house",
    "link": "https://vadim-losenkov.ru/book-house",
-   "time": "7 недель 2 дня",
+   "time": "4 недели 1 день",
+   "speed": 29,
    "description": "Большой интернет магазин, на котором используется множество различных технологий, состоящий из 25 страниц. Каждая страница адаптивна (хорошо выглядит как на ПК так и на телефоне).",
    "srcDesc": "images/content/project-book.jpg",
    "srcMobile": "images/content/project-book-mobile.jpg",
@@ -202,4 +190,4 @@
     ]
    }
   }
- ]
+]

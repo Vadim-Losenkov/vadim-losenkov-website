@@ -1,9 +1,10 @@
 [
   {
-   "id": "1",
+   "id": "4",
    "title": "Rabit",
    "link": "https://vadim-losenkov.ru/rabit",
-   "time": "3 недели 4 дня",
+   "time": "3 недели",
+   "speed": 24,
    "description": "Большой 13-ти страничный сайт компани специализирующейся на починке техники. страниц у сайта не соеденены между собой, поэтому предоставлена карта сайта",
    "srcDesc": "images/content/rabit.jpg",
    "srcMobile": "images/content/rabit-mob.jpg",
@@ -31,10 +32,11 @@
    ]
   },
   {
-   "id": "2",
+   "id": "8",
    "title": "book-house",
    "link": "https://vadim-losenkov.ru/book-house",
-   "time": "7 недель 2 дня",
+   "time": "4 недели 1 день",
+   "speed": 29,
    "description": "Большой интернет магазин, на котором используется множество различных технологий, состоящий из 25 страниц. Каждая страница адаптивна (хорошо выглядит как на ПК так и на телефоне).",
    "srcDesc": "images/content/project-book.jpg",
    "srcMobile": "images/content/project-book-mobile.jpg",
@@ -60,4 +62,4 @@
     ]
    }
   }
- ]
+]
