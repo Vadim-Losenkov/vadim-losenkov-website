@@ -1,11 +1,9 @@
 @import "global/fonts";
+@import "global/vars";
 @import "global/reset";
 @import "global/libs";
 @import "global/mixins";
 @import "global/global";
-
-$red: #c40000;
-$dark-red: #bb0000;
 
 .portfolio {
   margin-top: 120px;
@@ -63,7 +61,7 @@ $dark-red: #bb0000;
     div {
       padding: 4px 30px;
       padding-left: 38px;
-      background-color: $dark-red;
+      background-color: $light-color;
       border-radius: 5px;
       color: #fff;
       display: inline-block;
@@ -93,7 +91,7 @@ $dark-red: #bb0000;
       font-size: 9px;
       width: 15px;
       height: 15px;
-      color: $dark-red;
+      color: $light-color;
       background-color: #fff;
       border-radius: 50%;
       display: flex;
@@ -103,15 +101,15 @@ $dark-red: #bb0000;
   }
   &__filter-footer {
     b {
-      color: $red;
+      color: $dark-color;
       font-size: 16px;
     }
     strong {
-      color: $red;
+      color: $dark-color;
       font-weight: 400;
       padding-bottom: 2px;
       margin-right: 10px;
-      border-bottom: 1px dashed $red;
+      border-bottom: 1px dashed $dark-color;
     }
   }
   &__filter-title {

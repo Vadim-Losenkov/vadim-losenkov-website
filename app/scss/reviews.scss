@@ -1,4 +1,5 @@
 @import "global/fonts";
+@import "global/vars";
 @import "global/reset";
 @import "global/mixins";
 @import "global/global";
@@ -70,7 +71,7 @@
   &__item-price {
     font-size: 20px;
     font-weight: 700;
-    color: #a00000;
+    color: $dark-color;
     padding-left: 30px;
     span {
       position: relative;

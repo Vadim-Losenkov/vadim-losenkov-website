@@ -46,6 +46,7 @@ $(function () {
     const $userDescription = $('.github__user-description')
     const $userSubscribers = $('.github__user-subscribers')
     const $userAva = $('.github__user-ava')
+    const $userRedirect = $('.github__user-redirect')
     
     $('.github__desc-title').on('click', function(e) {
       $(this).toggleClass('open')
@@ -58,6 +59,9 @@ $(function () {
       $userDescription.html(resp.data.bio)
       $userAva.attr({
         src: resp.data.avatar_url
+      })
+      $userRedirect.attr({
+        href: resp.data.html_url
       })
     })
   } ())
