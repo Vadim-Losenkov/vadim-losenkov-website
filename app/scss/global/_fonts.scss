@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @font-face {
   font-family: 'unicons';
@@ -13,17 +10,7 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'unicons';
-    src: url('../font/unicons.svg?50911815#unicons') format('svg');
-  }
-}
-*/
- 
+
  [class^="uil-"]:before, [class*=" uil-"]:before {
   font-family: "unicons";
   font-style: normal;
@@ -53,3 +40,266 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 .uil-arrow-up:before { content: '\e84b'; }
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-100.eot');
+    src: url('../fonts/rawline-100.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-100.woff2') format('woff2'),
+         url('../fonts/rawline-100.woff') format('woff'),
+         url('../fonts/rawline-100.ttf') format('truetype'),
+         url('../fonts/rawline-100.svg') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-100i.eot');
+    src: url('../fonts/rawline-100i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-100i.woff2') format('woff2'),
+         url('../fonts/rawline-100i.woff') format('woff'),
+         url('../fonts/rawline-100i.ttf') format('truetype'),
+         url('../fonts/rawline-100i.svg') format('svg');
+    font-weight: 100;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-200.eot');
+    src: url('../fonts/rawline-200.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-200.woff2') format('woff2'),
+         url('../fonts/rawline-200.woff') format('woff'),
+         url('../fonts/rawline-200.ttf') format('truetype'),
+         url('../fonts/rawline-200.svg') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-200i.eot');
+    src: url('../fonts/rawline-200i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-200i.woff2') format('woff2'),
+         url('../fonts/rawline-200i.woff') format('woff'),
+         url('../fonts/rawline-200i.ttf') format('truetype'),
+         url('../fonts/rawline-200i.svg') format('svg');
+    font-weight: 200;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-300-.eot');
+    src: url('../fonts/rawline-300-.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-300.woff2') format('woff2'),
+         url('../fonts/rawline-300.woff') format('woff'),
+         url('../fonts/rawline-300.ttf') format('truetype'),
+         url('../fonts/rawline-300.svg') format('svg');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-300i.eot');
+    src: url('../fonts/rawline-300i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-300i.woff2') format('woff2'),
+         url('../fonts/rawline-300i.woff') format('woff'),
+         url('../fonts/rawline-300i.ttf') format('truetype'),
+         url('../fonts/rawline-300i.svg') format('svg');
+    font-weight: 300;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-400.eot');
+    src: url('../fonts/rawline-400.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-400.woff2') format('woff2'),
+         url('../fonts/rawline-400.woff') format('woff'),
+         url('../fonts/rawline-400.ttf') format('truetype'),
+         url('../fonts/rawline-400.svg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-400i.eot');
+    src: url('../fonts/rawline-400i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-400i.woff2') format('woff2'),
+         url('../fonts/rawline-400i.woff') format('woff'),
+         url('../fonts/rawline-400i.ttf') format('truetype'),
+         url('../fonts/rawline-400i.svg') format('svg');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-500.eot');
+    src: url('../fonts/rawline-500.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-500.woff2') format('woff2'),
+         url('../fonts/rawline-500.woff') format('woff'),
+         url('../fonts/rawline-500.ttf') format('truetype'),
+         url('../fonts/rawline-500.svg') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-500i.eot');
+    src: url('../fonts/rawline-500i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-500i.woff2') format('woff2'),
+         url('../fonts/rawline-500i.woff') format('woff'),
+         url('../fonts/rawline-500i.ttf') format('truetype'),
+         url('../fonts/rawline-500i.svg') format('svg');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-600.eot');
+    src: url('../fonts/rawline-600.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-600.woff2') format('woff2'),
+         url('../fonts/rawline-600.woff') format('woff'),
+         url('../fonts/rawline-600.ttf') format('truetype'),
+         url('../fonts/rawline-600.svg') format('svg');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-600i.eot');
+    src: url('../fonts/rawline-600i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-600i.woff2') format('woff2'),
+         url('../fonts/rawline-600i.woff') format('woff'),
+         url('../fonts/rawline-600i.ttf') format('truetype'),
+         url('../fonts/rawline-600i.svg') format('svg');
+    font-weight: 600;
+    font-style: italic;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-700.eot');
+    src: url('../fonts/rawline-700.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-700.woff2') format('woff2'),
+         url('../fonts/rawline-700.woff') format('woff'),
+         url('../fonts/rawline-700.ttf') format('truetype'),
+         url('../fonts/rawline-700.svg') format('svg');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-700i.eot');
+    src: url('../fonts/rawline-700i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-700i.woff2') format('woff2'),
+         url('../fonts/rawline-700i.woff') format('woff'),
+         url('../fonts/rawline-700i.ttf') format('truetype'),
+         url('../fonts/rawline-700i.svg') format('svg');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-800.eot');
+    src: url('../fonts/rawline-800.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-800.woff2') format('woff2'),
+         url('../fonts/rawline-800.woff') format('woff'),
+         url('../fonts/rawline-800.ttf') format('truetype'),
+         url('../fonts/rawline-800.svg') format('svg');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-800i.eot');
+    src: url('../fonts/rawline-800i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-800i.woff2') format('woff2'),
+         url('../fonts/rawline-800i.woff') format('woff'),
+         url('../fonts/rawline-800i.ttf') format('truetype'),
+         url('../fonts/rawline-800i.svg') format('svg');
+    font-weight: 800;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-900.eot');
+    src: url('../fonts/rawline-900.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-900.woff2') format('woff2'),
+         url('../fonts/rawline-900.woff') format('woff'),
+         url('../fonts/rawline-900.ttf') format('truetype'),
+         url('../fonts/rawline-900.svg') format('svg');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'rawline';
+    src: url('../fonts/rawline-900i.eot');
+    src: url('../fonts/rawline-900i.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rawline-900i.woff2') format('woff2'),
+         url('../fonts/rawline-900i.woff') format('woff'),
+         url('../fonts/rawline-900i.ttf') format('truetype'),
+         url('../fonts/rawline-900i.svg') format('svg');
+    font-weight: 900;
+    font-style: italic;
+
+}

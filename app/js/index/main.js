@@ -26,22 +26,6 @@ $(function () {
     })
   }())
 
-  (function userProfile() {
-    const $userTitle = $('.github__user-title')
-    const $userDescription = $('.github__user-description')
-    const $userSubscribers = $('.github__user-subscribers')
-    const $userAva = $('.github__user-ava')
-
-    axios.get('https://api.github.com/users/Vadim-Losenkov').then(resp => {
-      console.log(resp.data);
-      $userTitle.html(resp.data.name)
-      $userDescription.html(resp.data.bio)
-      $userAva.attr({
-        src: resp.data.avatar_url
-      })
-    })
-  } ())
-
   $('[href="scrollTop"]').click(function (event) {
     event.preventDefault()
     setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
@@ -56,4 +40,25 @@ $(function () {
     $menu.toggleClass('open')
     $btn.toggleClass('open')
   })
+  
+  (function userProfile() {
+    const $userTitle = $('.github__user-title')
+    const $userDescription = $('.github__user-description')
+    const $userSubscribers = $('.github__user-subscribers')
+    const $userAva = $('.github__user-ava')
+    
+    $('.github__desc-title').on('click', function(e) {
+      $(this).toggleClass('open')
+      $('.github__desc-inner').slideToggle()
+    })
+
+    axios.get('https://api.github.com/users/Vadim-Losenkov').then(resp => {
+      console.log(resp.data);
+      $userTitle.html(resp.data.name)
+      $userDescription.html(resp.data.bio)
+      $userAva.attr({
+        src: resp.data.avatar_url
+      })
+    })
+  } ())
 })
