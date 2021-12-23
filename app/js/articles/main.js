@@ -160,6 +160,8 @@ function filter(wrapper) {
 
   const $wrapper = document.querySelector(wrapper)
   const $total = $wrapper.querySelector('[data-filter-total] b')
+  const $categoryes = $wrapper.querySelectorAll('[data-filter-category]')
+  setCategoryCount()
   // const $items = $wrapper.querySelectorAll('[data-target]')
 
   lazyImagesPositions = []
@@ -169,7 +171,6 @@ function filter(wrapper) {
     const defaultCondition = $target && !$target.querySelector('span')?.classList.contains('open')
     
     if (defaultCondition) {
-      
       const type = $target.dataset.target
       const more = $target.dataset.filterMore
       const position = $target.dataset.filterPosition
@@ -178,61 +179,52 @@ function filter(wrapper) {
       if (type) {
         if (type === 'all') {
           posts = responsePosts
-          setProjectsCount()
+          setCategoryCount()
         } else if (type === 'land' || type === 'mp' || type === 'ecom') {
           posts = responsePosts.filter(post =>  post.groups.includes(type))
-          setProjectsCount({total: posts.length})
+          setCategoryCount()
         }
       } if (category) {
         $target.classList.toggle('active')
-        switch (category) {
-          case 'html':
-            categoryShorter('HTML5', category)
-            break;
-          case 'flexbox':
-            categoryShorter('Flexbox', category)
-            break;
-          case 'scss':
-            categoryShorter('SCSS', category)
-            break;
-          case 'css':
-            categoryShorter('CSS', category)
-            break;
-          case 'js':
-            categoryShorter('JavaScript', category)
-            break;
-          case 'jq':
-            categoryShorter('JQuery', category)
-            break;
-          case 'gulp':
-            categoryShorter('Gulp 5', category)
-            break;
-          case 'b4':
-            categoryShorter('Bootstrap 4', category)
-            break;
-          
-        }
-        
-        // передавать сюда true  или false
-        function categoryShorter(useItem, category) {
-          let withCount = posts.filter(post => post.useList.includes(useItem))
-          let withoutCount = posts.length - withCount.length
-          
+        const [targetCategory, targetName] = JSON.parse(category)
+
+        categoryShorter(targetName, targetCategory)
+
+        function categoryShorter(useItem) {
+          // придумать переменную, которая будет счетчиком
           const active = $target.classList.contains('active')
+          const itemsCount = active
+            ? posts.filter($p => !$p.useList.includes(useItem)).length
+            : posts.length
           
-          // здесь тернарником проверяем тру или фолс нам передетс
-          setProjectsCount({total: active ? withoutCount : withCount.length, item: {category, count: withCount.length}})
+
+          /*
+          * гениальная идея!!
+          мы делаем пременную, через filter.length и добавляем эту хуету в total
+          когда юзер нажимает применить фильтр, то мы пробегаемся по тем у когоесть класс(короче которые серые)
+          и делаем такую хцуйню filter($el => !postrs.includes('css') && !posts.includes('...') и т.д) 
+          */
+
+          // setProjectsCount({total: active ? withoutCount : posts.length})
         }
       }
     }
   })
   function setProjectsCount(obj) {
+    console.log(obj);
     if (`${obj.total}`) {
       $total.innerHTML = obj.total
     }
     if (obj.item) {
-      $wrapper.querySelector(`[data-filter-category="${obj.item.category}"] i`).innerHTML = obj.item.count
+      $wrapper.querySelector(`[data-filter-category='${obj.item.category}'] i`).innerHTML = obj.item.count
     }
+  }
+  function setCategoryCount() {
+    $categoryes.forEach($c => {
+      const categoryName = JSON.parse($c.dataset.filterCategory)[1]
+      $c.querySelector('i').innerHTML = posts.filter($p => $p.useList.includes(categoryName)).length
+    })
+    setProjectsCount({total: posts.length})
   }
 }
 
@@ -242,7 +234,6 @@ function getPosts() {
     responsePosts = resp.data
     
     setPosts()
-    
     filter('.portfolio__filter-inner')
   })
   
