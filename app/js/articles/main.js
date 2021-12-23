@@ -194,7 +194,7 @@ function filter(wrapper) {
           // придумать переменную, которая будет счетчиком
           const active = $target.classList.contains('active')
           const itemsCount = active
-            ? posts.filter($p => !$p.useList.includes(useItem)).length
+            ? posts.filter($p => !$p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
             : posts.length
           
 
