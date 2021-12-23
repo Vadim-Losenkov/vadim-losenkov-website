@@ -8,7 +8,7 @@
    "description": "Сайт для репетитора по английскому языку. Разработка велась на SCSS + JS, без использования JQuery",
    "srcDesc": "images/content/english.jpg",
    "srcMobile": "images/content/english-mob.jpg",
-   "groups": "\"all\", \"mp\"",
+   "groups": ["all", "mp"],
    "modal": {
     "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
     "buttons": [
@@ -39,7 +39,7 @@
    "description": "Корпоративный сайт немецкой правовой компании. При разработке использовался Bootstrap 4 и JQuery",
    "srcDesc": "images/content/borowan.jpg",
    "srcMobile": "images/content/borowan-mob.jpg",
-   "groups": "\"all\", \"mp\"",
+   "groups": ["all", "mp"],
    "modal": {
     "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
     "buttons": [
@@ -72,7 +72,7 @@
    "description": "Cайт продажник компании по продвижению бизнес проектов. Разработка велась на SCSS + JS. JQuery не используется",
    "srcDesc": "images/content/seo.jpg",
    "srcMobile": "images/content/seo-mob.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -91,7 +91,7 @@
    "description": "Большой 13-ти страничный сайт компани специализирующейся на починке техники. страниц у сайта не соеденены между собой, поэтому предоставлена карта сайта",
    "srcDesc": "images/content/rabit.jpg",
    "srcMobile": "images/content/rabit-mob.jpg",
-   "groups": "\"all\", \"ecom\", \"mp\"",
+   "groups": ["all", "mp", "ecom"],
    "modal": {
     "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
     "buttons": [
@@ -123,7 +123,7 @@
    "description": "Небольшой сайт продажник инвестиций в криптовалюты. Сайт был разработан всего за 5 дней. При адаптировании сайта все элементы сайта сохранены.",
    "srcDesc": "images/content/crypto.jpg",
    "srcMobile": "images/content/crypto-mob.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "modal": {
     "text": "<b>Выбирите:</b><br>русскоязычная версия сайта / англоязычная версия сайта",
     "buttons": [
@@ -155,7 +155,7 @@
    "description": "Сайт выполнен для сети магазинов karavan. Состоит из 5 странтц, каждая страница адаптирована, сам сайт оптимизирован на оценку 90+ на сайте Google Page Speed.",
    "srcDesc": "images/content/karavan.jpg",
    "srcMobile": "images/content/karavan-mob.jpg",
-   "groups": "\"all\", \"mp\"",
+   "groups": ["all", "mp"],
    "modal": {
     "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
     "buttons": [
@@ -187,7 +187,7 @@
    "description": "Небольшой 5-и страничный магазин, на котором используется множество различных технологий, используется как продажник для курса по инвестициям от популярного сообщества",
    "srcDesc": "images/content/lemonfortea-mob.jpg",
    "srcMobile": "images/content/lemonfortea.jpg",
-   "groups": "\"all\", \"mp\"",
+   "groups": ["all", "mp"],
    "modal": {
     "text": "<b>Выбирите:</b><br>перейти на главную / открыть карту сайта",
     "buttons": [
@@ -219,7 +219,7 @@
    "description": "Стандартный одностраничник (landing-page), созданный для инвестирования в ставки на спорт. Используется современные технологии",
    "srcDesc": "images/content/gmbet.jpg",
    "srcMobile": "images/content/gmbet-mob.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -238,7 +238,7 @@
    "description": "Большой интернет магазин, на котором используется множество различных технологий, состоящий из 25 страниц. Каждая страница адаптивна (хорошо выглядит как на ПК так и на телефоне).",
    "srcDesc": "images/content/project-book.jpg",
    "srcMobile": "images/content/project-book-mobile.jpg",
-   "groups": "\"all\", \"ecom\", \"mp\"",
+   "groups": ["all", "mp", "ecom"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -269,7 +269,7 @@
    "description": "landing-page (одностраничный сайт) с использованием $, созданный для компании дизайнеров в городе Ростов-На-Дону. Сайт адаптирован под мобильные устройства",
    "srcDesc": "images/content/design.jpg",
    "srcMobile": "images/content/design-mobile.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -288,7 +288,7 @@
    "description": "Сайт компании, предоставляющей услуги установки подогреваемых полов. Сайт выполнен с большим использованием JavaScript без использования $. Адаптирован под мобильные телефоны",
    "srcDesc": "images/content/inventa.jpg",
    "srcMobile": "images/content/inv-mobile.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -306,7 +306,7 @@
    "description": "Небольшой сайт, для продажи vpn серверов. Был выполнен с использованием технологии Flexbox + $. Адаптирован под мобильные устройства",
    "srcDesc": "images/content/vpn.jpg",
    "srcMobile": "images/content/vpn-mobile.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -325,7 +325,7 @@
    "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
    "srcDesc": "images/content/rocket.jpg",
    "srcMobile": "images/content/rocket-mob.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -344,7 +344,7 @@
    "description": "Сайт выполнен для компании занимающейся доставкой строительных материалов. На сайте используется несколько $ плагинов, что не мешает его производительности (90+ баллов на GPSpeed). Сайт полностью адаптирован под мобильные устройства",
    "srcDesc": "images/content/stroy.jpg",
    "srcMobile": "images/content/stroy-mobile.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",
@@ -363,7 +363,7 @@
    "description": "Сайт выполнен с целью демонстрации моих умений в области верстки, поэтому не наполнен контентом. Сайт адаптивен для мобильных устройств",
    "srcDesc": "images/content/supplement.jpg",
    "srcMobile": "images/content/supplement-mobile.jpg",
-   "groups": "\"all\", \"land\"",
+   "groups": ["all", "land"],
    "useList": [
     "HTML5",
     "Flexbox",

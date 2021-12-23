@@ -75,16 +75,38 @@
                 <div class="portfolio__filter-box">
                   <div class="portfolio__filter-title">
                     Дополнительные фильтры:
+                    <div class="portfolio__filter-selector">
+                      <div data-filter data-filter-position="top" class="portfolio__filter-btn active">
+                        <svg fill="#555" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <title>sort-amount-desc</title>
+                        <path d="M10 24v-24h-4v24h-5l7 7 7-7h-5z"></path>
+                        <path d="M14 0h18v4h-18v-4z"></path>
+                        <path d="M14 6h14v4h-14v-4z"></path>
+                        <path d="M14 12h10v4h-10v-4z"></path>
+                        <path d="M14 18h6v4h-6v-4z"></path>
+                        </svg>
+                      </div>
+                      <div data-filter data-filter-position="down" class="portfolio__filter-btn">
+                        <svg class="reverse" fill="#555" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <title>sort-amount-desc</title>
+                        <path d="M10 24v-24h-4v24h-5l7 7 7-7h-5z"></path>
+                        <path d="M14 0h18v4h-18v-4z"></path>
+                        <path d="M14 6h14v4h-14v-4z"></path>
+                        <path d="M14 12h10v4h-10v-4z"></path>
+                        <path d="M14 18h6v4h-6v-4z"></path>
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   <div class="portfolio__filter-info">
-                    <div class="portfolio__filter-itemwrapper" data-filter="speed" data-position="top">
-                      <span>speed</span>
+                    <div class="portfolio__filter-itemwrapper" data-filter-more="speed" data-filter>
+                      <span>Скорость</span>
                     </div>
-                    <div class="portfolio__filter-itemwrapper" data-filter="date" data-position="top">
-                      <span>date</span>
+                    <div class="portfolio__filter-itemwrapper" data-filter-more="date" data-filter>
+                      <span class="open">Дата</span>
                     </div>
-                    <div class="portfolio__filter-itemwrapper" data-filter="name" data-position="top">
-                      <span>name</span>
+                    <div class="portfolio__filter-itemwrapper" data-filter-more="name" data-filter>
+                      <span>Название</span>
                     </div>
                   </div>
                 </div>
@@ -93,45 +115,50 @@
                     Инструменты разработки:
                   </div>
                   <div class="portfolio__filter-info">
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="html" data-filter>
                       <div>
                         HTML5 <i>10</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="flexbox" data-filter>
                       <div>
                         Flexbox <i>16</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="scss" data-filter>
                       <div>
                         SCSS <i>6</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="css" data-filter>
                       <div>
                         CSS <i>9</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="js" data-filter>
                       <div>
                         JavaScript <i>3</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="jq" data-filter>
                       <div>
                         JQuery <i>1</i>
                       </div>
                     </div>
-                    <div class="portfolio__filter-category">
+                    <div class="portfolio__filter-category" data-filter-category="gulp" data-filter>
                       <div>
                         Gulp 5 <i>8</i>
+                      </div>
+                    </div>
+                    <div class="portfolio__filter-category" data-filter-category="b4" data-filter>
+                      <div>
+                        Bootstrap 4 <i>7</i>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="portfolio__filter-box footer">
-                  <div class="portfolio__filter-footer">
+                  <div data-filter-total class="portfolio__filter-footer">
                     Найдено проектов: <b>2</b>
                   </div>
                   <div class="portfolio__filter-footer">

@@ -67,6 +67,7 @@
       display: inline-block;
       margin-bottom: 5px;
       position: relative;
+      cursor: pointer;
       &::before {
         content: "";
         color: #fff;
@@ -80,6 +81,12 @@
         background-size: cover;
         background-position: center;
         transform: translateY(-50%);
+      }
+    }
+    &.active div {
+      background-color: #999!important;
+      i {
+        color: #999;
       }
     }
     i {
@@ -110,12 +117,40 @@
       padding-bottom: 2px;
       margin-right: 10px;
       border-bottom: 1px dashed $dark-color;
+      cursor: pointer;
+    }
+  }
+  &__filter-btn {
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #efefef;
+    border: 3px solid  #999;
+    margin: 0 5px;
+    cursor: pointer;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+    &.active {
+      background-color: $light-color;
+      border: 3px solid  $light-color;
+      svg {
+        fill: #fff;
+      }
     }
   }
   &__filter-title {
     font-weight: 700;
     font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .reverse {
+      transform: scale(1, -1);
+      margin-top: -2px;
+    }
   }
   &__filter-box {
     padding: 15px 10px;
@@ -127,6 +162,9 @@
   }
   &__filter-inner {
     display: none;
+  }
+  &__filter-selector {
+    display: flex;
   }
   &__filter-opener {
     font-weight: 700;
@@ -159,6 +197,10 @@
   &__filter-itemwrapper {
     padding-bottom: 10px;
     display: inline-block;
+    margin-bottom: 5px;
+    span {
+      cursor: pointer;
+    }
   }
   &__project-image {
     max-height: 360px !important;

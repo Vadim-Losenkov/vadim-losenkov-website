@@ -12,6 +12,8 @@ const defaultFilterSettings = {
 
 const windowHeight = document.documentElement.clientHeight
 
+let responsePosts
+
 let poster
 let $posts
 let stateItem = 'all'
@@ -154,65 +156,137 @@ class Poster {
 }
 
 function filter(wrapper) {
-  getPosts(defaultFilterSettings, true)
+  // getPosts(defaultFilterSettings, true)
 
   const $wrapper = document.querySelector(wrapper)
-  const $items = $wrapper.querySelectorAll('[data-target]')
+  const $total = $wrapper.querySelector('[data-filter-total] b')
+  // const $items = $wrapper.querySelectorAll('[data-target]')
 
   lazyImagesPositions = []
 
   $wrapper.addEventListener('click', (event) => {
     const $target = event.target.closest('[data-filter]')
-    const defaultCondition = $target && !$target.querySelector('span').classList.contains('open')
+    const defaultCondition = $target && !$target.querySelector('span')?.classList.contains('open')
     
     if (defaultCondition) {
-      const useFilter = {
-        filterBy: $target.dataset.filter,
-        from: $target.dataset.position
-      }
-      const useRerender = $target.dataset.target
-      if (useFilter.filterBy) {
-        getPosts({item: stateItem, filter: useFilter})
+      
+      const type = $target.dataset.target
+      const more = $target.dataset.filterMore
+      const position = $target.dataset.filterPosition
+      const category = $target.dataset.filterCategory
+      
+      if (type) {
+        if (type === 'all') {
+          posts = responsePosts
+          setProjectsCount()
+        } else if (type === 'land' || type === 'mp' || type === 'ecom') {
+          posts = responsePosts.filter(post =>  post.groups.includes(type))
+          setProjectsCount({total: posts.length})
+        }
+      } if (category) {
+        $target.classList.toggle('active')
+        switch (category) {
+          case 'html':
+            categoryShorter('HTML5', category)
+            break;
+          case 'flexbox':
+            categoryShorter('Flexbox', category)
+            break;
+          case 'scss':
+            categoryShorter('SCSS', category)
+            break;
+          case 'css':
+            categoryShorter('CSS', category)
+            break;
+          case 'js':
+            categoryShorter('JavaScript', category)
+            break;
+          case 'jq':
+            categoryShorter('JQuery', category)
+            break;
+          case 'gulp':
+            categoryShorter('Gulp 5', category)
+            break;
+          case 'b4':
+            categoryShorter('Bootstrap 4', category)
+            break;
+          
+        }
         
+        // передавать сюда true  или false
+        function categoryShorter(useItem, category) {
+          let withCount = posts.filter(post => post.useList.includes(useItem))
+          let withoutCount = posts.length - withCount.length
+          
+          const active = $target.classList.contains('active')
+          
+          // здесь тернарником проверяем тру или фолс нам передетс
+          setProjectsCount({total: active ? withoutCount : withCount.length, item: {category, count: withCount.length}})
+        }
       }
     }
-    /* if ($target && !$target.querySelector('span').classList.contains('open')) {
-      window.removeEventListener('scroll', lazyScroll)
-      
-      const $item = $target.dataset.target
-      
-      $item ? $PORTFOLIO_WRAPPER.innerHTML = `
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-        <div class="portfolio__card--loading">
-          <div class="portfolio__card-link--loading"></div>
-          <div class="portfolio__card-image--loading"></div>
-          <div class="portfolio__card-filter--loading"></div>
-          <div class="portfolio__card-button--loading"></div>
-          <div class="portfolio__card-descripton--loading"></div>
-        </div>
-      `
-      : ''
-      
-      $items.forEach($el => {
-        $el.querySelector('span').classList.remove('open')
-      })
-      
-      $target.querySelector('span').classList.add('open')
-      
-      $item 
-        ? getPosts({item: $item, filter: filterObj}) 
-        : getPosts({item: stateItem, filter: filterObj})
-    }
-*/
   })
+  function setProjectsCount(obj) {
+    if (`${obj.total}`) {
+      $total.innerHTML = obj.total
+    }
+    if (obj.item) {
+      $wrapper.querySelector(`[data-filter-category="${obj.item.category}"] i`).innerHTML = obj.item.count
+    }
+  }
 }
 
+function getPosts() {
+  axios.get(`../app/data/all.json`).then((resp) => {
+    posts = resp.data
+    responsePosts = resp.data
+    
+    setPosts()
+    
+    filter('.portfolio__filter-inner')
+  })
+  
+  function setPosts() {
+    poster = new Poster({
+      portfolio: $PORTFOLIO_WRAPPER,
+      modals: $MODALS_WRAPPER,
+    })
+    
+    new Swiper('.card-slider', {
+      spaceBetween: 30,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.portfolio__project-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
+        },
+      },
+    })
+
+    $posts = $PORTFOLIO_WRAPPER.querySelectorAll('.project-card')
+    lazyImagesPositions = []
+    $posts.forEach($p => {
+      lazyImagesPositions.push($p.getBoundingClientRect().top + pageYOffset)
+    })
+    lazyScrollCheck()
+    
+    window.addEventListener('scroll', lazyScroll)
+    
+    $('.portfolio__project-description__title').on('click', function (event) {
+      const $description = $(this).siblings('.portfolio__project-wrapper')
+      $(this).toggleClass('open')
+      $description.slideToggle()
+    })
+  }
+}
+
+getPosts()
+
+/*
 function getPosts(settings = defaultFilterSettings, R) {
   if (settings.item !== stateItem || R) {
     rerender()
@@ -223,6 +297,7 @@ function getPosts(settings = defaultFilterSettings, R) {
   function rerender() {
     axios.get(`../app/data/${settings.item}.json`).then((resp) => {
       posts = resp.data
+      responsePosts = resp.data
       
       setPosts()
       setFilter()
@@ -288,10 +363,8 @@ function getPosts(settings = defaultFilterSettings, R) {
     })
   }
 }
-
+*/
 (function INIT() {
-  filter('.portfolio__filter-inner')
-
   $(function () {
     $($PORTFOLIO_WRAPPER).magnificPopup({
       delegate: '.popup',

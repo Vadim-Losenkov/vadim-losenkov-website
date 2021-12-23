@@ -20,8 +20,8 @@ class ChangeHandler(FileSystemEventHandler):
             print(event)
             # list_files = subprocess.run(["sass", "app/scss/style.scss", "app/css/style.min.css", "--style", "compressed"])
             # list_files = subprocess.run(["sass", "app/scss/reviews.scss", "app/css/reviews.min.css", "--style", "compressed"])
-            # list_files = subprocess.run(["sass", "app/scss/portfolio.scss", "app/css/portfolio.min.css", "--style", "compressed"])
-            list_files = subprocess.run(["sass", "app/scss/index.scss", "app/css/index.min.css", "--style", "compressed"])
+            list_files = subprocess.run(["sass", "app/scss/portfolio.scss", "app/css/portfolio.min.css", "--style", "compressed"])
+            # list_files = subprocess.run(["sass", "app/scss/index.scss", "app/css/index.min.css", "--style", "compressed"])
             # list_files = subprocess.run(["sass", "app/scss/about.scss", "app/css/about.min.css", "--style", "compressed"])
             # list_files = subprocess.run(["sass", "app/scss/social.scss", "app/css/social.min.css", "--style", "compressed"])
 
