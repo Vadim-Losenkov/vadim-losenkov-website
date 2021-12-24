@@ -88,6 +88,9 @@
       i {
         color: #999;
       }
+      &::before {
+        transform: translateY(-50%) rotate(45deg);
+      }
     }
     i {
       position: absolute;
@@ -166,11 +169,18 @@
   &__filter-selector {
     display: flex;
   }
+  &__filter-box.search {
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
   &__filter-opener {
     font-weight: 700;
     font-size: 18px;
     padding: 15px 10px;
     border-bottom: 0;
+    cursor: pointer;
     transition: all .3s;
     position: relative;
     &.open {

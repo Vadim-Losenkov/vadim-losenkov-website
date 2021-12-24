@@ -11,7 +11,6 @@ const defaultFilterSettings = {
 }
 
 const windowHeight = document.documentElement.clientHeight
-
 let responsePosts
 
 let poster
@@ -156,13 +155,17 @@ class Poster {
 }
 
 function filter(wrapper) {
-  // getPosts(defaultFilterSettings, true)
-
+  const filterSettings = {
+    projectType: 'all',
+    disabledItems: []
+  }
+  
   const $wrapper = document.querySelector(wrapper)
+  const $categoryItems = $wrapper.querySelectorAll('[data-filter-category]')
   const $total = $wrapper.querySelector('[data-filter-total] b')
+  let totalCount = posts.length
   const $categoryes = $wrapper.querySelectorAll('[data-filter-category]')
   setCategoryCount()
-  // const $items = $wrapper.querySelectorAll('[data-target]')
 
   lazyImagesPositions = []
 
@@ -181,42 +184,57 @@ function filter(wrapper) {
           posts = responsePosts
           setCategoryCount()
         } else if (type === 'land' || type === 'mp' || type === 'ecom') {
-          posts = responsePosts.filter(post =>  post.groups.includes(type))
+          posts = responsePosts
+          // переписать это на объект filterSettings
+          // posts = responsePosts.filter(post =>  post.groups.includes(type))
           setCategoryCount()
         }
-      } if (category) {
+        
+        totalCount = posts.length
+      } else if (category) {
         $target.classList.toggle('active')
         const [targetCategory, targetName] = JSON.parse(category)
-
         categoryShorter(targetName, targetCategory)
 
         function categoryShorter(useItem) {
           // придумать переменную, которая будет счетчиком
           const active = $target.classList.contains('active')
-          const itemsCount = active
-            ? posts.filter($p => !$p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
-            : posts.length
           
-
-          /*
-          * гениальная идея!!
-          мы делаем пременную, через filter.length и добавляем эту хуету в total
-          когда юзер нажимает применить фильтр, то мы пробегаемся по тем у когоесть класс(короче которые серые)
-          и делаем такую хцуйню filter($el => !postrs.includes('css') && !posts.includes('...') и т.д) 
-          */
-
-          // setProjectsCount({total: active ? withoutCount : posts.length})
+          if (active) {
+            totalCount - posts.filter($p => $p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
+            filterSettings.disabledItems.push(useItem)
+          } else {
+            totalCount + posts.filter($p => $p.useList.includes(useItem)).length
+            const idx = filterSettings.disabledItems.indexOf(useItem)
+            
+            filterSettings.disabledItems.splice(idx, 1)
+          }
+          
+          setProjectsCount({total: totalCount})
+          
         }
+      } else if ($target.dataset.filterSearch === 'search') {
+        $categoryItems.forEach($cItem => {
+          if ($cItem.classList.contains('active')) {
+            
+            /*
+            posts = posts.filter($p => {
+              return !$p.useList.includes(JSON.parse($cItem.dataset.filterCategory)[1])
+            })
+            */
+          }
+        })
+          
+        // poster.render()
+        // setPosts()
+        
+        console.log(filterSettings);
       }
     }
   })
   function setProjectsCount(obj) {
-    console.log(obj);
     if (`${obj.total}`) {
       $total.innerHTML = obj.total
-    }
-    if (obj.item) {
-      $wrapper.querySelector(`[data-filter-category='${obj.item.category}'] i`).innerHTML = obj.item.count
     }
   }
   function setCategoryCount() {
@@ -228,7 +246,8 @@ function filter(wrapper) {
   }
 }
 
-function getPosts() {
+function getPosts(render) {
+  // УБИРАТЬ СЛУШАТЕЛЬ СКРОЛЛА!!!!!!!
   axios.get(`../app/data/all.json`).then((resp) => {
     posts = resp.data
     responsePosts = resp.data
@@ -236,43 +255,42 @@ function getPosts() {
     setPosts()
     filter('.portfolio__filter-inner')
   })
+}
+function setPosts() {
+  poster = new Poster({
+    portfolio: $PORTFOLIO_WRAPPER,
+    modals: $MODALS_WRAPPER,
+  })
   
-  function setPosts() {
-    poster = new Poster({
-      portfolio: $PORTFOLIO_WRAPPER,
-      modals: $MODALS_WRAPPER,
-    })
-    
-    new Swiper('.card-slider', {
-      spaceBetween: 30,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
+  new Swiper('.card-slider', {
+    spaceBetween: 30,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.portfolio__project-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
       },
-      pagination: {
-        el: '.portfolio__project-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
-        },
-      },
-    })
+    },
+  })
 
-    $posts = $PORTFOLIO_WRAPPER.querySelectorAll('.project-card')
-    lazyImagesPositions = []
-    $posts.forEach($p => {
-      lazyImagesPositions.push($p.getBoundingClientRect().top + pageYOffset)
-    })
-    lazyScrollCheck()
-    
-    window.addEventListener('scroll', lazyScroll)
-    
-    $('.portfolio__project-description__title').on('click', function (event) {
-      const $description = $(this).siblings('.portfolio__project-wrapper')
-      $(this).toggleClass('open')
-      $description.slideToggle()
-    })
-  }
+  $posts = $PORTFOLIO_WRAPPER.querySelectorAll('.project-card')
+  lazyImagesPositions = []
+  $posts.forEach($p => {
+    lazyImagesPositions.push($p.getBoundingClientRect().top + pageYOffset)
+  })
+  lazyScrollCheck()
+  
+  window.addEventListener('scroll', lazyScroll)
+  
+  $('.portfolio__project-description__title').on('click', function (event) {
+    const $description = $(this).siblings('.portfolio__project-wrapper')
+    $(this).toggleClass('open')
+    $description.slideToggle()
+  })
 }
 
 getPosts()
@@ -355,64 +373,62 @@ function getPosts(settings = defaultFilterSettings, R) {
   }
 }
 */
-(function INIT() {
-  $(function () {
-    $($PORTFOLIO_WRAPPER).magnificPopup({
-      delegate: '.popup',
-      type: 'inline',
-      removalDelay: 500, //delay removal by X to allow out-animation
-      callbacks: {
-        beforeOpen: function () {
-          this.st.mainClass = this.st.el.attr('data-effect');
-        }
-      },
-      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-    });
-    
-    (function arrowScrollbar() {
-      let progressPath = document.querySelector('.progress-wrap path');
-      let pathLength = progressPath.getTotalLength();
-      progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
-      progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-      progressPath.style.strokeDashoffset = pathLength;
-      progressPath.getBoundingClientRect();
-      progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
-      let updateProgress = function () {
-        let scroll = $(window).scrollTop();
-        let height = $(document).height() - $(window).height();
-        let progress = pathLength - (scroll * pathLength / height);
-        progressPath.style.strokeDashoffset = progress;
+$(function () {
+  $($PORTFOLIO_WRAPPER).magnificPopup({
+    delegate: '.popup',
+    type: 'inline',
+    removalDelay: 500, //delay removal by X to allow out-animation
+    callbacks: {
+      beforeOpen: function () {
+        this.st.mainClass = this.st.el.attr('data-effect');
       }
-      updateProgress();
-      $(window).scroll(updateProgress);
-      let offset = 50;
-      let duration = 550;
-      $(window).on('scroll', function () {
-        if ($(this).scrollTop() > offset) {
-          $('.progress-wrap').addClass('active-progress');
-        } else {
-          $('.progress-wrap').removeClass('active-progress');
-        }
-      })
-    }())
-    
-    $('.portfolio__filter-opener').on('click', function (event) {
-      $(this).toggleClass('open')
-      $('.portfolio__filter-inner').slideToggle()
+    },
+    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+  });
+  
+  (function arrowScrollbar() {
+    let progressPath = document.querySelector('.progress-wrap path');
+    let pathLength = progressPath.getTotalLength();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+    progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+    progressPath.style.strokeDashoffset = pathLength;
+    progressPath.getBoundingClientRect();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+    let updateProgress = function () {
+      let scroll = $(window).scrollTop();
+      let height = $(document).height() - $(window).height();
+      let progress = pathLength - (scroll * pathLength / height);
+      progressPath.style.strokeDashoffset = progress;
+    }
+    updateProgress();
+    $(window).scroll(updateProgress);
+    let offset = 50;
+    let duration = 550;
+    $(window).on('scroll', function () {
+      if ($(this).scrollTop() > offset) {
+        $('.progress-wrap').addClass('active-progress');
+      } else {
+        $('.progress-wrap').removeClass('active-progress');
+      }
     })
-    $('[href="scrollTop"]').click(function (event) {
-      event.preventDefault()
-      setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
-    })
-    const $menu = $('.mobile-menu')
-    const $btn = $('.header__btn')
-    $btn.on('click', () => {
-      $btn.toggleClass('open')
-      $menu.toggleClass('open')
-    })
-    $('.mobile-menu__item').on('click', () => {
-      $menu.toggleClass('open')
-      $btn.toggleClass('open')
-    })
+  }())
+  
+  $('.portfolio__filter-opener').on('click', function (event) {
+    $(this).toggleClass('open')
+    $('.portfolio__filter-inner').slideToggle()
   })
-} ())
+  $('[href="scrollTop"]').click(function (event) {
+    event.preventDefault()
+    setTimeout(() => $('html, body').animate({ scrollTop: 0 }, 500), 0);
+  })
+  const $menu = $('.mobile-menu')
+  const $btn = $('.header__btn')
+  $btn.on('click', () => {
+    $btn.toggleClass('open')
+    $menu.toggleClass('open')
+  })
+  $('.mobile-menu__item').on('click', () => {
+    $menu.toggleClass('open')
+    $btn.toggleClass('open')
+  })
+})
