@@ -1,21 +1,11 @@
 const $PORTFOLIO_WRAPPER = document.querySelector('[data-portfolio="wrapper"]')
 const $MODALS_WRAPPER = document.querySelector('[data-modal="wrapper"]')
-const defaultFilterSettings = {
-  item: 'all', 
-  filter: {filterBy: '', from: ''}
-  // filter: {filterBy: 'speed', from: 'top'}
-    // {filterBy: 'date', from: 'top'}, 
-    // {filterBy: 'name', from: 'top'}, 
-    // {filterBy: 'tech', from: []}
-  
-}
 
 const windowHeight = document.documentElement.clientHeight
 let responsePosts
 
 let poster
 let $posts
-let stateItem = 'all'
 let lazyImagesPositions = []
 
 function lazyScrollCheck() {
@@ -167,30 +157,36 @@ function filter(wrapper) {
   const $categoryes = $wrapper.querySelectorAll('[data-filter-category]')
   setCategoryCount()
 
-  lazyImagesPositions = []
-
   $wrapper.addEventListener('click', (event) => {
     const $target = event.target.closest('[data-filter]')
     const defaultCondition = $target && !$target.querySelector('span')?.classList.contains('open')
     
     if (defaultCondition) {
       const type = $target.dataset.target
-      const more = $target.dataset.filterMore
-      const position = $target.dataset.filterPosition
+      // const more = $target.dataset.filterMore
+      // const position = $target.dataset.filterPosition
       const category = $target.dataset.filterCategory
-      
+      /*
+      сделать фикс:
+        1. когда выключена 1 категория, то возникают траблы с переключением типов
+        2. при нажатии поска ломается totalCount
+      */
       if (type) {
         if (type === 'all') {
           posts = responsePosts
           setCategoryCount()
         } else if (type === 'land' || type === 'mp' || type === 'ecom') {
-          posts = responsePosts
-          // переписать это на объект filterSettings
-          // posts = responsePosts.filter(post =>  post.groups.includes(type))
+          posts = responsePosts.filter($post => $post.groups.includes(type))
+
           setCategoryCount()
         }
         
+        $wrapper.querySelectorAll('[data-filter="type"] span').forEach($item => $item.classList.remove('open'))
+        $target.querySelector('span').classList.add('open')
+
+        filterSettings.projectType = type
         totalCount = posts.length
+        setProjectsCount({total: totalCount})
       } else if (category) {
         $target.classList.toggle('active')
         const [targetCategory, targetName] = JSON.parse(category)
@@ -201,10 +197,10 @@ function filter(wrapper) {
           const active = $target.classList.contains('active')
           
           if (active) {
-            totalCount - posts.filter($p => $p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
+            totalCount = totalCount - posts.filter($p => $p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
             filterSettings.disabledItems.push(useItem)
           } else {
-            totalCount + posts.filter($p => $p.useList.includes(useItem)).length
+            totalCount = totalCount + posts.filter($p => $p.useList.includes(useItem)).length
             const idx = filterSettings.disabledItems.indexOf(useItem)
             
             filterSettings.disabledItems.splice(idx, 1)
@@ -214,39 +210,47 @@ function filter(wrapper) {
           
         }
       } else if ($target.dataset.filterSearch === 'search') {
-        $categoryItems.forEach($cItem => {
-          if ($cItem.classList.contains('active')) {
-            
-            /*
-            posts = posts.filter($p => {
-              return !$p.useList.includes(JSON.parse($cItem.dataset.filterCategory)[1])
-            })
-            */
-          }
-        })
-          
-        // poster.render()
-        // setPosts()
-        
-        console.log(filterSettings);
+        window.removeEventListener('scroll', lazyScroll)
+        setFilter()
       }
     }
   })
   function setProjectsCount(obj) {
+    console.log(obj);
     if (`${obj.total}`) {
-      $total.innerHTML = obj.total
+      $total.innerHTML = obj.total >= 0 ? obj.total : 0
     }
   }
   function setCategoryCount() {
     $categoryes.forEach($c => {
       const categoryName = JSON.parse($c.dataset.filterCategory)[1]
+      // console.log(posts.filter($p => $p.useList.includes(categoryName)).length);
       $c.querySelector('i').innerHTML = posts.filter($p => $p.useList.includes(categoryName)).length
     })
     setProjectsCount({total: posts.length})
   }
+
+  function setFilter() {
+    filterSettings.projectType 
+      ? posts = responsePosts.filter($post => $post.groups.includes(filterSettings.projectType))
+      : ''
+
+    if (filterSettings.disabledItems) {
+      $categoryItems.forEach($cItem => {
+        if ($cItem.classList.contains('active')) {
+          posts = posts.filter($p => {
+            return !$p.useList.includes(JSON.parse($cItem.dataset.filterCategory)[1])
+          })
+        }
+      })
+    }
+
+    poster.render()
+    setPosts()
+  }
 }
 
-function getPosts(render) {
+function getPosts() {
   // УБИРАТЬ СЛУШАТЕЛЬ СКРОЛЛА!!!!!!!
   axios.get(`../app/data/all.json`).then((resp) => {
     posts = resp.data
@@ -295,84 +299,7 @@ function setPosts() {
 
 getPosts()
 
-/*
-function getPosts(settings = defaultFilterSettings, R) {
-  if (settings.item !== stateItem || R) {
-    rerender()
-  } else {
-    setFilter()
-  }
-  
-  function rerender() {
-    axios.get(`../app/data/${settings.item}.json`).then((resp) => {
-      posts = resp.data
-      responsePosts = resp.data
-      
-      setPosts()
-      setFilter()
-    })
-  }
-  function setFilter() {
-    const pos = settings.filter.from
-    switch (settings.filter.filterBy) {
-      case 'speed':
-        pos === 'top' 
-          ? posts.sort((firstItem, secondItem) => firstItem.speed - secondItem.speed)
-          : posts.sort((firstItem, secondItem) => firstItem.speed - secondItem.speed).reverse()
-        break;
-      case 'date':
-        pos === 'top' 
-          ? posts
-          : posts.reverse()
-        break;
-      case 'name':
-        pos === 'top' 
-          ? posts
-          : posts.reverse()
-        break;
-    }
-    
-    poster.render()
-    setPosts()
-  }
-  function setPosts() {
-    poster = new Poster({
-      portfolio: $PORTFOLIO_WRAPPER,
-      modals: $MODALS_WRAPPER,
-    })
-    
-    new Swiper('.card-slider', {
-      spaceBetween: 30,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.portfolio__project-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return `<span data-id="${index}" class="${className}">${index === 0 ? 'на ПК' : 'на телефоне'}</span>`;
-        },
-      },
-    })
 
-    $posts = $PORTFOLIO_WRAPPER.querySelectorAll('.project-card')
-    lazyImagesPositions = []
-    $posts.forEach($p => {
-      lazyImagesPositions.push($p.getBoundingClientRect().top + pageYOffset)
-    })
-    lazyScrollCheck()
-    
-    window.addEventListener('scroll', lazyScroll)
-    
-    $('.portfolio__project-description__title').on('click', function (event) {
-      const $description = $(this).siblings('.portfolio__project-wrapper')
-      $(this).toggleClass('open')
-      $description.slideToggle()
-    })
-  }
-}
-*/
 $(function () {
   $($PORTFOLIO_WRAPPER).magnificPopup({
     delegate: '.popup',
