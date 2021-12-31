@@ -155,8 +155,8 @@ function filter(wrapper) {
   const $total = $wrapper.querySelector('[data-filter-total] b')
   let totalCount = posts.length
   const $categoryes = $wrapper.querySelectorAll('[data-filter-category]')
+  
   setCategoryCount()
-
   $wrapper.addEventListener('click', (event) => {
     const $target = event.target.closest('[data-filter]')
     const defaultCondition = $target && !$target.querySelector('span')?.classList.contains('open')
@@ -185,38 +185,47 @@ function filter(wrapper) {
         $target.querySelector('span').classList.add('open')
 
         filterSettings.projectType = type
-        totalCount = posts.length
+        /* 
+          у нас есть массив отключеных проектов, нам нужно проверить сколько проектов написаны без использования этих технологий =>
+          => 
+        */
+        
+        let disCount
+        filterSettings.disabledItems.forEach(disItem => {
+          disCount = posts.filter($p => $p.useList.includes(disItem)).length
+        })
+        
+        totalCount = posts.length - (disCount ? disCount : 0)
         setProjectsCount({total: totalCount})
       } else if (category) {
         $target.classList.toggle('active')
         const [targetCategory, targetName] = JSON.parse(category)
-        categoryShorter(targetName, targetCategory)
+        categoryShorter(targetName, $target)
 
-        function categoryShorter(useItem) {
-          // придумать переменную, которая будет счетчиком
-          const active = $target.classList.contains('active')
-          
-          if (active) {
-            totalCount = totalCount - posts.filter($p => $p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
-            filterSettings.disabledItems.push(useItem)
-          } else {
-            totalCount = totalCount + posts.filter($p => $p.useList.includes(useItem)).length
-            const idx = filterSettings.disabledItems.indexOf(useItem)
-            
-            filterSettings.disabledItems.splice(idx, 1)
-          }
-          
-          setProjectsCount({total: totalCount})
-          
-        }
       } else if ($target.dataset.filterSearch === 'search') {
         window.removeEventListener('scroll', lazyScroll)
         setFilter()
       }
     }
   })
+  
+  function categoryShorter(useItem, $el) {
+    const active = $el.classList.contains('active')
+    
+    if (active) {
+      totalCount = totalCount - posts.filter($p => $p.useList.includes(useItem)).length // эта хуета выдает кол во айтемов без фильтра  
+      filterSettings.disabledItems.push(useItem)
+    } else {
+      totalCount = totalCount + posts.filter($p => $p.useList.includes(useItem)).length
+      const idx = filterSettings.disabledItems.indexOf(useItem)
+      
+      filterSettings.disabledItems.splice(idx, 1)
+    }
+    
+    setProjectsCount({total: totalCount})
+    
+  }
   function setProjectsCount(obj) {
-    console.log(obj);
     if (`${obj.total}`) {
       $total.innerHTML = obj.total >= 0 ? obj.total : 0
     }
@@ -224,12 +233,10 @@ function filter(wrapper) {
   function setCategoryCount() {
     $categoryes.forEach($c => {
       const categoryName = JSON.parse($c.dataset.filterCategory)[1]
-      // console.log(posts.filter($p => $p.useList.includes(categoryName)).length);
       $c.querySelector('i').innerHTML = posts.filter($p => $p.useList.includes(categoryName)).length
     })
     setProjectsCount({total: posts.length})
   }
-
   function setFilter() {
     filterSettings.projectType 
       ? posts = responsePosts.filter($post => $post.groups.includes(filterSettings.projectType))
@@ -251,7 +258,6 @@ function filter(wrapper) {
 }
 
 function getPosts() {
-  // УБИРАТЬ СЛУШАТЕЛЬ СКРОЛЛА!!!!!!!
   axios.get(`../app/data/all.json`).then((resp) => {
     posts = resp.data
     responsePosts = resp.data
