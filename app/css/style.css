@@ -1,0 +1,48 @@
+/*
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(#000, .75);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .3s;
+
+  img {
+    max-height: 80vh;
+    cursor: default;
+    max-width: 100%;
+  }
+
+  &__close {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    flex-wrap: wrap;
+
+    .stick {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 5px;
+      transform: rotate(135deg) translateY(-17px);
+      box-shadow: 2px 2px 10px rgba(#000, .7);
+    }
+
+    .stick.last {
+      transform: rotate(-135deg) translateY(17px);
+    }
+  }
+}
+*/
+/*# sourceMappingURL=style.css.map */

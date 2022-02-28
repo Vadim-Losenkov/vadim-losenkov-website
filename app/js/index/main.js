@@ -40,29 +40,33 @@ $(function () {
     $menu.toggleClass('open')
     $btn.toggleClass('open')
   })
-  
-  (function userProfile() {
-    const $userTitle = $('.github__user-title')
-    const $userDescription = $('.github__user-description')
-    const $userSubscribers = $('.github__user-subscribers')
-    const $userAva = $('.github__user-ava')
-    const $userRedirect = $('.github__user-redirect')
-    
-    $('.github__desc-title').on('click', function(e) {
-      $(this).toggleClass('open')
-      $('.github__desc-inner').slideToggle()
-    })
 
-    axios.get('https://api.github.com/users/Vadim-Losenkov').then(resp => {
-      console.log(resp.data);
-      $userTitle.html(resp.data.name)
-      $userDescription.html(resp.data.bio)
-      $userAva.attr({
-        src: resp.data.avatar_url
-      })
-      $userRedirect.attr({
-        href: resp.data.html_url
-      })
+  const $userTitle = $('.github__user-title')
+  const $userDescription = $('.github__user-description')
+  const $userSubscribers = $('.github__user-subscribers')
+  const $userAva = $('.github__user-ava')
+  const $userRedirect = $('.github__user-redirect')
+
+  $('.github__desc-title').on('click', function (e) {
+    $(this).toggleClass('open')
+    $('.github__desc-inner').slideToggle()
+  })
+
+  axios.get('https://api.github.com/users/Vadim-Losenkov').then(resp => {
+    console.log(resp.data);
+    $userTitle.html(resp.data.name)
+    $userDescription.html(resp.data.bio)
+    $userAva.attr({
+      src: resp.data.avatar_url
     })
-  } ())
+    $userRedirect.attr({
+      href: resp.data.html_url
+    })
+  })
+})
+
+new Swiper('.top-works__slider', {
+  pagination: {
+    el: '.top-works__slider-dots'
+  }
 })
