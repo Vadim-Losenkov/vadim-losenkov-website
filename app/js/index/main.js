@@ -66,6 +66,7 @@ $(function () {
 })
 
 new Swiper('.top-works__slider', {
+  spaceBetween: 30,
   pagination: {
     el: '.top-works__slider-dots'
   }

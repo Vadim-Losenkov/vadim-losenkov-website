@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../scss/media/media-reviews.scss"
-    ],
-    "names": [],
-    "file": "media-reviews.css"
-}

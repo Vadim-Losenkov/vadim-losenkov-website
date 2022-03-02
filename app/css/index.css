@@ -1096,7 +1096,6 @@ main.main {
 }
 
 .top-works {
-  max-width: 520px;
   margin: 50px auto;
 }
 
@@ -1106,14 +1105,17 @@ main.main {
   margin-bottom: 20px;
 }
 
+.top-works__slider {
+  overflow: hidden;
+}
+
 .top-works__item {
   border-radius: 10px;
-  padding: 20px;
+  padding: 20px 0;
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
           box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
   margin-bottom: 20px;
   background-color: #fff;
-  width: 100%;
 }
 
 .top-works__item-link {

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../scss/media/media-social.scss"
-    ],
-    "names": [],
-    "file": "media-social.css"
-}
